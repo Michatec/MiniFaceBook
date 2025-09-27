@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Support') }}{% endblock %}
+{% block content %}
+<div class="container">
+    <p>{{ _('If you have any questions or need assistance, please contact us at:') }}</p>
+    <p><strong>{{ _('Github:') }}</strong> <a href="https://github.com/Michatec/MiniFaceBook/issues" target="_blank">https://github.com/Michatec/MiniFaceBook/issues</a></p>
+</div>
+{% if user.is_owner %}
+    <form action="{{ url_for('admin.wipe_server') }}" method="post" style="display:inline;">
+        <button class="btn btn-danger btn-sm" type="submit">
+            <i class="bi bi-x-circle"></i> {{ _('Wipe Server') }}
+        </button>
+    </form>
+{% endif %}
+<h1><i class="bi bi-question-circle me-2"></i>{{ _('Support') }}</h1>
+<form method="POST" class="mb-4">
+    <input type="text" name="title" placeholder="{{ _('Title') }}" required class="form-control mb-2">
+    <textarea name="description" placeholder="{{ _('Describe your issue...') }}" required class="form-control mb-2"></textarea>
+    <button class="btn btn-primary">{{ _('Create Ticket') }}</button>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>{{ _('Title') }}</th>
+            <th>{{ _('Status') }}</th>
+            <th>{{ _('Created') }}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ticket in support_requests %}
+        <tr>
+            <td>{{ ticket.title }}</td>
+            <td>
+                {% if ticket.status == 'open' %}
+                    <span class="badge bg-success">{{ _('Open') }}</span>
+                {% else %}
+                    <span class="badge bg-secondary">{{ _('Closed') }}</span>
+                {% endif %}
+            </td>
+            <td>{{ ticket.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+            <td>
+                <a href="{{ url_for('support.support_thread', request_id=ticket.id) }}" class="btn btn-sm btn-info">{{ _('View') }}</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

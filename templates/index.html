@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Home') }}{% endblock %}
+{% block content %}
+<div class="row justify-content-center align-items-center mt-5">
+  <div class="col-md-8">
+    <div class="card shadow-lg p-4 mb-5" style="border-radius: 1.5rem;">
+      <div class="card-body text-center">
+        <h1 class="mb-3" style="font-size:2.5rem; font-weight:700; color:#2563eb;">
+          <i class="bi bi-people-fill me-2"></i>MiniFacebook
+        </h1>
+        <p class="lead mb-4" style="font-size:1.2rem;">
+          {{ _('MiniFacebook is a minimalist social network for sharing posts, images, and messages with friends.') }}<br>
+          <span class="text-muted">{{ _('Fast, simple, data-saving - and with') }} <i class="bi bi-moon-stars"></i> {{ _('Dark Mode!') }}</span>
+        </p>
+        {% if not current_user.is_authenticated %}
+          <a href="{{ url_for('log.login') }}" class="btn btn-primary m-2 px-4 py-2"><i class="bi bi-box-arrow-in-right me-1"></i>{{ _('Login') }}</a>
+          <a href="{{ url_for('log.register') }}" class="btn btn-success m-2 px-4 py-2"><i class="bi bi-person-plus me-1"></i>{{ _('Register') }}</a>
+          <a href="{{ url_for('post.feed') }}" class="btn btn-outline-info m-2 px-4 py-2"><i class="bi bi-house-door me-1"></i>{{ _('Go to Feed') }}</a>
+        {% else %}
+          <a href="{{ url_for('post.feed') }}" class="btn btn-success m-2 px-4 py-2"><i class="bi bi-house-door me-1"></i>{{ _('Go to Feed') }}</a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="card shadow-sm p-4" style="border-radius: 1.5rem; background: var(--about-bg, #f8fafc);">
+      <div class="card-body">
+        <h4 class="mb-3" style="color:#2563eb;">
+          <i class="bi bi-info-circle"></i> {{ _('About MiniFacebook') }}
+        </h4>
+        <ul class="list-unstyled text-start mx-auto" style="max-width:420px;">
+          <li class="mb-2"><i class="bi bi-check-circle text-success"></i> {{ _('Share posts, images & videos') }}</li>
+          <li class="mb-2"><i class="bi bi-check-circle text-success"></i> {{ _('Friendships & notifications') }}</li>
+          <li class="mb-2"><i class="bi bi-check-circle text-success"></i> {{ _('Modern') }} <i class="bi bi-moon-stars"></i> {{ _('Dark/Light Mode') }}</li>
+          <li class="mb-2"><i class="bi bi-check-circle text-success"></i> {{ _('Open Source & privacy-friendly') }}</li>
+        </ul>
+        <div class="mt-4 text-muted" style="font-size:0.95rem;">
+          <p><b>MiniFacebook</b> {{ _('is a private, data-saving network for you and your friends. No ads, no data sharing - just fun in sharing and communicating.') }}</p>
+          <p>{{ _('Developed with love,') }} <i class="bi bi-bootstrap"></i> Bootstrap, <i class="bi bi-moon-stars"></i> {{ _('Dark Mode!') }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

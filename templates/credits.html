@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Credits') }}{% endblock %}
+{% block content %}
+<h1>{{ _('Credits') }}</h1>
+<p>{{ _('This project was developed by') }} Michatec. {{ _('Special thanks to all contributors and supporters.') }}</p>
+<p>{{ _('Translators:') }}</p>
+<ul>
+    <li>{{ _('German:') }} Michatec</li>
+    <li>{{ _('English:') }} Michatec</li>
+</ul>
+<p>{{ _('Special thanks to the open-source community for their invaluable resources and tools.') }}</p>
+<p>{{ _('Design inspired by various open-source projects and communities.') }}</p>
+<p>{{ _('Backend powered by Flask and SQLAlchemy.') }}</p>
+<p>{{ _('Frontend built with Bootstrap and jQuery.') }}</p>
+<p>{{ _('Icons by FontAwesome and other open-source resources.') }}</p>
+<p>{{ _('Hosted on a secure and reliable platform.') }}</p>
+<p>{{ _('If you would like to contribute, please reach out to us.') }}</p>
+<a href="https://github.com/Michatec/MiniFaceBook" target="_blank">{{ _('GitHub Repository') }}</a>
+<p>{{ _('Thank you for using our application!') }}</p>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Password Reset Requests') }}{% endblock %}
+{% block content %}
+<h2>
+  <i class="bi bi-arrow-clockwise me-2"></i>{{ _('Password Reset Requests') }}
+  <a href="{{ url_for('admin.admin_delete_all_reset_requests') }}" class="btn btn-danger btn-sm float-end"><i class="bi bi-trash"></i> {{ _('Delete All') }}</a>
+</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th><i class="bi bi-person-circle"></i> {{ _('User') }}</th>
+      <th><i class="bi bi-clock"></i> {{ _('Requested At') }}</th>
+      <th><i class="bi bi-gear"></i> {{ _('Actions') }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for req in requests %}
+    <tr>
+      <td>
+        {% if req.user.profile_pic and req.user.profile_pic != 'default.png' %}
+        <img src="{{ url_for('static', filename='profile_pics/' ~ req.user.profile_pic) }}" class="rounded me-2" width="32">{{ req.user.username }}
+        {% else %}
+        <i class="bi bi-person-circle me-1"></i>{{ req.user.username }}
+        {% endif %}
+      </td>
+      <td>{{ req.requested_at.strftime('%Y-%m-%d %H:%M') }}</td>
+      <td>
+        <a href="{{ url_for('admin.admin_reset_password', req_id=req.id) }}" class="btn btn-success btn-sm"><i class="bi bi-key"></i> {{ _('Set Password') }}</a>
+        <form action="{{ url_for('admin.reject_reset_request', req_id=req.id) }}" method="post" style="display:inline;">
+          <button class="btn btn-danger btn-sm" type="submit"><i class="bi bi-x"></i> {{ _('Reject') }}</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% if requests_done %}
+<h3><i class="bi bi-check-circle me-2"></i>{{ _('Completed Requests') }}</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th><i class="bi bi-person-circle"></i> {{ _('User') }}</th>
+      <th><i class="bi bi-check-circle"></i> {{ _('Requested At') }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for req in requests_done %}
+    <tr>
+      <td>
+        {% if req.user.profile_pic and req.user.profile_pic != 'default.png' %}
+        <img src="{{ url_for('static', filename='profile_pics/' ~ req.user.profile_pic) }}" class="rounded me-2" width="32">{{ req.user.username }}
+        {% else %}
+        <i class="bi bi-person-circle me-1"></i>{{ req.user.username }}
+        {% endif %}
+      </td>
+      <td>{{ req.requested_at.strftime('%Y-%m-%d %H:%M') }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% if requests_rejected %}
+<h3><i class="bi bi-x-circle me-2"></i>{{ _('Rejected Requests') }}</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th><i class="bi bi-person-circle"></i> {{ _('User') }}</th>
+      <th><i class="bi bi-x-circle"></i> {{ _('Requested At') }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for req in requests_rejected %}
+    <tr>
+      <td>
+        {% if req.user.profile_pic and req.user.profile_pic != 'default.png' %}
+        <img src="{{ url_for('static', filename='profile_pics/' ~ req.user.profile_pic) }}" class="rounded me-2" width="32">{{ req.user.username }}
+        {% else %}
+        <i class="bi bi-person-circle me-1"></i>{{ req.user.username }}
+        {% endif %}
+      </td>
+      <td>{{ req.requested_at.strftime('%Y-%m-%d %H:%M') }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% if not requests %}
+  <div class="alert alert-info"><i class="bi bi-info-circle"></i> {{ _('No open reset requests.') }}</div>
+{% endif %}
+{% endblock %}

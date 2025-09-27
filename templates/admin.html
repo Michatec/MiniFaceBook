@@ -1,0 +1,372 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Admin') }}{% endblock %}
+{% block content %}
+<h2><i class="bi bi-shield-lock me-2"></i>{{ _('Admin Panel') }}</h2>
+
+<ul class="nav nav-tabs mb-3" id="adminTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="users-tab" data-bs-toggle="tab" data-bs-target="#users" type="button" role="tab">{{ _('Users') }}</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="posts-tab" data-bs-toggle="tab" data-bs-target="#posts" type="button" role="tab">{{ _('Posts') }}</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="friendships-tab" data-bs-toggle="tab" data-bs-target="#friendships" type="button" role="tab">{{ _('Friendships') }}</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="comments-tab" data-bs-toggle="tab" data-bs-target="#comments" type="button" role="tab">{{ _('Comments') }}</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="uploads-tab" data-bs-toggle="tab" data-bs-target="#uploads" type="button" role="tab">{{ _('Uploads') }}</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="notifications-tab" data-bs-toggle="tab" data-bs-target="#notifications" type="button" role="tab">{{ _('Notifications') }}</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="events-tab" data-bs-toggle="tab" data-bs-target="#events" type="button" role="tab">{{ _('Events') }}</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="shop-items-tab" data-bs-toggle="tab" data-bs-target="#shop-items" type="button" role="tab">{{ _('Shop Orders') }}</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="shop-orders-tab" data-bs-toggle="tab" data-bs-target="#shop-orders" type="button" role="tab">{{ _('Reward Points') }}</button>
+  </li>
+</ul>
+
+<div class="tab-content" id="adminTabContent">
+  <!-- Users Tab -->
+  <div class="tab-pane fade show active" id="users" role="tabpanel">
+    <h4><i class="bi bi-people me-2"></i>{{ _('Users') }}</h4>
+    <table class="table table-sm align-middle">
+      <thead>
+        <tr>
+          <th>{{ _('User') }}</th>
+          <th>{{ _('Email') }}</th>
+          <th>{{ _('Admin') }}</th>
+          <th>{{ _('Owner') }}</th>
+          <th>{{ _('Profile Pic') }}</th>
+          <th>{{ _('Actions') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td>{% if user.profile_pic and user.profile_pic != 'default.png' %}<img src="{{ url_for('static', filename='profile_pics/' ~ user.profile_pic) }}" width="32" class="rounded me-1">{% endif %} {{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>{% if user.is_admin %}<i class="bi bi-check-lg text-success"></i>{% endif %}</td>
+          <td>{% if user.is_owner %}<i class="bi bi-star-fill text-warning"></i>{% endif %}</td>
+          <td>
+            {% if user.profile_pic and user.profile_pic != 'default.png' %}
+              <img src="{{ url_for('static', filename='profile_pics/' ~ user.profile_pic) }}" width="32" class="rounded me-1">
+              <form action="{{ url_for('admin.admin_delete_pic', user_id=user.id) }}" method="post" style="display:inline;">
+                <button class="btn btn-danger btn-sm" title="{{ _('Delete Picture') }}"><i class="bi bi-image"></i></button>
+              </form>
+            {% endif %}
+          </td>
+          <td>
+            {% if not user.is_admin %}
+              <form action="{{ url_for('admin.make_admin', user_id=user.id) }}" method="post" style="display:inline;">
+                <button class="btn btn-success btn-sm" title="{{ _('Make Admin') }}"><i class="bi bi-person-gear"></i></button>
+              </form>
+            {% elif not user.is_owner %}
+              <form action="{{ url_for('admin.remove_admin', user_id=user.id) }}" method="post" style="display:inline;">
+                <button class="btn btn-warning btn-sm" title="{{ _('Remove Admin') }}"><i class="bi bi-person-dash"></i></button>
+              </form>
+            {% endif %}
+            {% if not user.is_owner %}
+              <form action="{{ url_for('admin.admin_delete_user', user_id=user.id) }}" method="post" style="display:inline;">
+                <button class="btn btn-danger btn-sm" title="{{ _('Delete User') }}"><i class="bi bi-person-x"></i></button>
+              </form>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Posts Tab -->
+  <div class="tab-pane fade" id="posts" role="tabpanel">
+    <h4><i class="bi bi-file-earmark-text me-2"></i>{{ _('All Posts') }}</h4>
+    <table class="table table-sm align-middle">
+      <thead>
+        <tr>
+          <th>{{ _('User') }}</th>
+          <th>{{ _('Content') }}</th>
+          <th>{{ _('Visibility') }}</th>
+          <th>{{ _('Created') }}</th>
+          <th>{{ _('Actions') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for post in posts %}
+        <tr>
+          <td>
+            {% if post.user.profile_pic and post.user.profile_pic != 'default.png' %}
+              <img src="{{ url_for('static', filename='profile_pics/' ~ post.user.profile_pic) }}" alt="{{ post.user.username }}" class="rounded me-1" width="32">{{ post.user.username }}
+            {% else %}
+              <i class="bi bi-person-circle me-1"></i>{{ post.user.username }}
+            {% endif %}
+          </td>
+          <td>{{ post.content|truncate(50) }}</td>
+          <td>
+            {% if post.visibility == 'public' %}
+              <span class="badge bg-info"><i class="bi bi-globe"></i> {{ _('Public') }}</span>
+            {% else %}
+              <span class="badge bg-secondary"><i class="bi bi-people"></i> {{ _('Friends') }}</span>
+            {% endif %}
+          </td>
+          <td>{{ post.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+          <td>
+            <form action="{{ url_for('admin.admin_delete_post', post_id=post.id) }}" method="post" style="display:inline;">
+              <button class="btn btn-danger btn-sm" title="{{ _('Delete Post') }}"><i class="bi bi-trash"></i></button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Friendships Tab -->
+  <div class="tab-pane fade" id="friendships" role="tabpanel">
+    <h4><i class="bi bi-people-arrows me-2"></i>{{ _('Friendships') }}</h4>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th>{{ _('User 1') }}</th>
+          <th>{{ _('User 2') }}</th>
+          <th>{{ _('Status') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for f in friendships %}
+        <tr>
+          <td>
+            {% if f.requester.profile_pic and f.requester.profile_pic != 'default.png' %}
+              <img src="{{ url_for('static', filename='profile_pics/' ~ f.requester.profile_pic) }}" alt="{{ f.requester.username }}" class="rounded me-1" width="32">{{ f.requester.username }}
+            {% else %}
+              <i class="bi bi-person-circle me-1"></i>{{ f.requester.username }}
+            {% endif %}
+          </td>
+          <td>
+            {% if f.receiver.profile_pic and f.receiver.profile_pic != 'default.png' %}
+              <img src="{{ url_for('static', filename='profile_pics/' ~ f.receiver.profile_pic) }}" alt="{{ f.receiver.username }}" class="rounded me-1" width="32">{{ f.receiver.username }}
+            {% else %}
+              <i class="bi bi-person-circle me-1"></i>{{ f.receiver.username }}
+            {% endif %}
+          </td>
+          <td>
+            {% if f.status == 'accepted' %}
+              <span class="badge bg-success">{{ _('Accepted') }}</span>
+            {% elif f.status == 'pending' %}
+              <span class="badge bg-warning text-dark">{{ _('Pending') }}</span>
+            {% else %}
+              <span class="badge bg-danger">{{ _('Rejected') }}</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Comments Tab -->
+  <div class="tab-pane fade" id="comments" role="tabpanel">
+    <h4><i class="bi bi-chat-left-text me-2"></i>{{ _('Comments') }}</h4>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th>{{ _('User') }}</th>
+          <th>{{ _('Post') }}</th>
+          <th>{{ _('Content') }}</th>
+          <th>{{ _('Created') }}</th>
+          <th>{{ _('Actions') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for comment in comments %}
+        <tr>
+          <td>
+            {% if comment.user.profile_pic and comment.user.profile_pic != 'default.png' %}
+              <img src="{{ url_for('static', filename='profile_pics/' ~ comment.user.profile_pic) }}" class="rounded me-2" width="32">{{ comment.user.username }}
+            {% else %}
+              <i class="bi bi-person-circle me-1"></i>{{ comment.user.username }}
+            {% endif %}
+          </td>
+          <td>{{ comment.post.id }}</td>
+          <td>{{ comment.content|truncate(50) }}</td>
+          <td>{{ comment.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+          <td>
+            <form action="{{ url_for('post.delete_comment', comment_id=comment.id) }}" method="post" style="display:inline;">
+              <button class="btn btn-danger btn-sm" title="{{ _('Delete Comment') }}"><i class="bi bi-trash"></i></button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Uploads Tab -->
+  <div class="tab-pane fade" id="uploads" role="tabpanel">
+    <h4><i class="bi bi-upload me-2"></i>{{ _('Uploads') }}
+    <form action="{{ url_for('admin.admin_delete_all_uploads') }}" method="post" style="display:inline;">
+      <button class="btn btn-danger btn-sm" title="{{ _('Delete All Uploads') }}"><i class="bi bi-trash"></i></button>
+    </form>
+    </h4>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th>{{ _('User') }}</th>
+          <th>{{ _('Filename') }}</th>
+          <th>{{ _('Type') }}</th>
+          <th>{{ _('Uploaded') }}</th>
+          <th>{{ _('Actions') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for upload in uploads %}
+        <tr>
+          <td>{{ upload.user.username }}</td>
+          <td>{{ upload.filename }}</td>
+          <td>{{ upload.filetype }}</td>
+          <td>{{ upload.uploaded_at.strftime('%Y-%m-%d %H:%M') }}</td>
+          <td>
+            <a href="{{ url_for('static', filename='uploads/' ~ upload.filename) }}" download class="btn btn-outline-primary btn-sm" title="{{ _('Download') }}"><i class="bi bi-download"></i></a>
+            <form action="{{ url_for('admin.admin_delete_upload', upload_id=upload.id) }}" method="post" style="display:inline;">
+              <button class="btn btn-danger btn-sm" title="{{ _('Delete Upload') }}"><i class="bi bi-trash"></i></button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Notifications Tab -->
+  <div class="tab-pane fade" id="notifications" role="tabpanel">
+    <h4>
+      <i class="bi bi-bell me-2"></i>{{ _('Notifications') }}
+      <form action="{{ url_for('admin.admin_delete_all_notifications') }}" method="post" onsubmit="return confirm('{{ _('Are you sure you want to delete all notifications?') }}');">
+        <button class="btn btn-danger mb-2 float-end"><i class="bi bi-bell-slash"></i> {{ _('Delete All Notifications') }}</button>
+      </form>
+    </h4>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th>{{ _('User') }}</th>
+          <th>{{ _('Message') }}</th>
+          <th>{{ _('Created') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for notif in all_notifications %}
+        <tr>
+          <td>{{ notif.user_id }}</td>
+          <td>{{ notif.message }}</td>
+          <td>{{ notif.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Events Tab -->
+  <div class="tab-pane fade" id="events" role="tabpanel">
+    <h4>
+      <i class="bi bi-clock-history me-2"></i>{{ _('Recent Events') }}
+      <form action="{{ url_for('admin.admin_delete_all_events') }}" method="post" onsubmit="return confirm('{{ _('Are you sure you want to delete all events?') }}');">
+        <button class="btn btn-danger mb-2 float-end"><i class="bi bi-calendar-x"></i> {{ _('Delete All Events') }}</button>
+      </form>
+    </h4>
+    <table class="table table-sm">
+      <tbody id="events-tbody">
+        {% for event in events %}
+        <tr>
+          <td>{{ event.timestamp.strftime('%Y-%m-%d %H:%M') }}</td>
+          <td>{{ event.message }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- User Shop Items -->
+  <div class="tab-pane fade" id="shop-items" role="tabpanel">
+    <h4><i class="bi bi-shop me-2"></i>{{ _('Shop Orders') }}</h4>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th>{{ _('User') }}</th>
+          <th>{{ _('Item') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for usi in user_shop_items %}
+        <tr>
+          <td>
+            {% if usi.user.profile_pic and usi.user.profile_pic != 'default.png' %}
+              <img src="{{ url_for('static', filename='profile_pics/' ~ usi.user.profile_pic) }}" class="rounded me-2" width="32">{{ usi.user.username }}
+            {% else %}
+              <i class="bi bi-person-circle me-1"></i>{{ usi.user.username }}
+            {% endif %}
+          </td>
+          <td>{{ usi.item.name }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Reward Points -->
+  <div class="tab-pane fade" id="shop-orders" role="tabpanel">
+    <h4><i class="bi bi-cart-check me-2"></i>{{ _('Reward Points') }}</h4>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th>{{ _('User') }}</th>
+          <th>{{ _('Points') }}</th>
+          <th>{{ _('Actions') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td>
+            {% if user.profile_pic and user.profile_pic != 'default.png' %}
+              <img src="{{ url_for('static', filename='profile_pics/' ~ user.profile_pic) }}" class="rounded me-2" width="32">{{ user.username }}
+            {% else %}
+              <i class="bi bi-person-circle me-1"></i>{{ user.username }}
+            {% endif %}
+          </td>
+          <td>{{ user.reward_points() }}</td>
+          <td>
+            <form action="{{ url_for('admin.admin_points', user_id=user.id) }}" method="post" style="display:inline;">
+              <input id="points" name="points" type="number" step="1" inputmode="decimal" required>
+              <button class="btn btn-success btn-sm" name="action" value="add" title="{{ _('Add Points') }}">
+                <i class="bi bi-plus-circle"></i>
+              </button>
+              <button class="btn btn-danger btn-sm" name="action" value="remove" title="{{ _('Remove Points') }}">
+                <i class="bi bi-dash-circle"></i>
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<script src="{{ url_for('static', filename='js/adstop.js') }}"></script>
+<script>
+  var triggerTabList = [].slice.call(document.querySelectorAll('#adminTab button'))
+  triggerTabList.forEach(function (triggerEl) {
+    var tabTrigger = new bootstrap.Tab(triggerEl)
+    triggerEl.addEventListener('click', function (event) {
+      event.preventDefault()
+      tabTrigger.show()
+    })
+  })
+</script>
+{% endblock %}

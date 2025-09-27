@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Admin Setup') }}{% endblock %}
+{% block content %}
+<h2><i class="bi bi-person-gear me-2"></i>{{ _('Admin Account Setup') }}</h2>
+<form method="post">
+    <div class="mb-3">
+        <label class="form-label"><i class="bi bi-person-circle me-1"></i>{{ _('Username') }}</label>
+        <input type="text" name="username" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label"><i class="bi bi-envelope-at me-1"></i>{{ _('Email') }}</label>
+        <input type="email" name="email" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label"><i class="bi bi-lock-fill me-1"></i>{{ _('Password') }}</label>
+        <input type="password" name="password" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label"><i class="bi bi-lock me-1"></i>{{ _('Confirm Password') }}</label>
+        <input type="password" name="confirm_password" class="form-control" required>
+    </div>
+    <button class="btn btn-primary" type="submit"><i class="bi bi-person-gear me-1"></i>{{ _('Create Admin') }}</button>
+</form>
+{% endblock %}

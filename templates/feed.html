@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Feed') }}{% endblock %}
+{% block content %}
+{% if current_user.is_authenticated %}
+<form action="{{ url_for('post.create_post') }}" method="post" enctype="multipart/form-data" class="mb-4">
+    {% if not SHOPITEM_ID_EXTRA_TYPES in current_user.shop_items | map(attribute='item_id') | list %}
+       <p class="form-text" style="text-align: right;">{{ _('Limit: 250') }}</p>
+    {% else %}
+        <p class="form-text" style="text-align: right;">{{ _('Limit: 500') }}</p>
+    {% endif %}
+    <textarea name="content" class="form-control" placeholder="{{ _('What\'s on your mind?') }}" required></textarea>
+    <input type="file" name="file">
+    {% if SHOPITEM_ID_EXTRA_UPLOAD in current_user.shop_items | map(attribute='item_id') | list %}
+      <input type="file" name="file2">
+    {% endif %}
+    <small class="form-text text-muted">{{ _('You can upload images, videos, audio files, or documents.') }}</small>
+    <select name="visibility" class="form-select mt-2" style="max-width:200px;display:inline-block;">
+        <option value="public">🌍 {{ _('Public') }}</option>
+        <option value="friends">👥 {{ _('Friends only') }}</option>
+    </select>
+    <button class="btn btn-primary mt-2" type="submit"><i class="bi bi-send me-1"></i>{{ _('Post') }}</button>
+</form>
+{% else %}
+<div class="alert alert-info" role="alert">
+    {{ _('Please') }} <a href="{{ url_for('log.login') }}">{{ _('log in') }}</a> {{ _('to create a post.') }}
+</div>
+{% endif %}
+{% for post in posts %}
+<div class="card mb-3">
+    <div class="card-body">
+        <div class="d-flex align-items-center mb-2">
+          {% if post.user.profile_pic and post.user.profile_pic != 'default.png' %}
+            {% if SHOPITEM_ID_GOLDRAHMEN in post.user.shop_items | map(attribute='item_id') | list %}
+                <img src="{{ url_for('static', filename='profile_pics/' ~ post.user.profile_pic) }}" class="profile-pic me-2" style="border-color: gold;">
+            {% else %}
+              <img src="{{ url_for('static', filename='profile_pics/' ~ post.user.profile_pic) }}" class="profile-pic me-2">
+            {% endif %}
+          {% else %}
+            <i class="bi bi-person-circle me-2"></i>
+          {% endif %}
+        <strong>{{ post.user.username }}</strong>
+        </div>
+        <p class="card-text">{{ post.content }}</p>
+        {% for upload in post.uploads %}
+            {% if upload.filetype.startswith('image') %}
+                <img src="{{ url_for('static', filename='uploads/' ~ upload.filename) }}"
+                     class="img-fluid mb-2"
+                     style="max-width: 200px; cursor: pointer;"
+                     data-bs-toggle="modal"
+                     data-bs-target="#imgModal{{ upload.id }}">
+                <div class="modal fade" id="imgModal{{ upload.id }}" tabindex="-1" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content bg-transparent border-0">
+                      <img src="{{ url_for('static', filename='uploads/' ~ upload.filename) }}" class="w-100 rounded shadow">
+                      <a href="{{ url_for('static', filename='uploads/' ~ upload.filename) }}" download class="btn btn-light position-absolute top-0 end-0 m-3"><i class="bi bi-download"></i> {{ _('Download') }}</a>
+                    </div>
+                  </div>
+                </div>
+            {% elif upload.filetype.startswith('video') %}
+                <video src="{{ url_for('static', filename='uploads/' ~ upload.filename) }}" controls width="320" class="mb-2"></video>
+                <a href="{{ url_for('static', filename='uploads/' ~ upload.filename) }}" download class="btn btn-sm btn-outline-secondary ms-2"><i class="bi bi-download"></i> {{ _('Download Video') }}</a>
+            {% elif upload.filetype.startswith('audio') %}
+                <audio src="{{ url_for('static', filename='uploads/' ~ upload.filename) }}" controls class="mb-2"></audio>
+                <a href="{{ url_for('static', filename='uploads/' ~ upload.filename) }}" download class="btn btn-sm btn-outline-secondary ms-2"><i class="bi bi-download"></i> {{ _('Download Audio') }}</a>
+            {% else %}
+                <a href="{{ url_for('static', filename='uploads/' ~ upload.filename) }}" download><i class="bi bi-paperclip"></i> {{ upload.filename }}</a>
+            {% endif %}
+        {% endfor %}
+        <form action="{{ url_for('like.like_post', post_id=post.id) }}" method="post" style="display:inline;">
+            <button class="btn btn-link" type="submit"><i class="bi bi-hand-thumbs-up"></i> {{ _('Like') }} ({{ post.likes.count() }})</button>
+        </form>
+        <form action="{{ url_for('like.unlike_post', post_id=post.id) }}" method="post" style="display:inline;">
+            <button class="btn btn-link" type="submit"><i class="bi bi-hand-thumbs-down"></i> {{ _('Unlike') }}</button>
+        </form>
+        {% if post.user_id == current_user.id %}
+        <form action="{{ url_for('post.delete_post', post_id=post.id) }}" method="post" style="display:inline;">
+            <button class="btn btn-danger btn-sm" type="submit"><i class="bi bi-trash"></i> {{ _('Delete') }}</button>
+        </form>
+        <form action="{{ url_for('post.edit_post', post_id=post.id) }}" method="get" style="display:inline;">
+            <button class="btn btn-secondary btn-sm" type="submit"><i class="bi bi-pencil-square"></i> {{ _('Edit') }}</button>
+        </form>
+        {% endif %}
+        {% if post.visibility == 'friends' %}
+        <span class="badge bg-secondary ms">{{ _('Friends only') }}</span>
+        {% else %}
+        <span class="badge bg-success ms">{{ _('Public') }}</span>
+        {% endif %}
+        <small class="text-muted"><i class="bi bi-clock me-1"></i>{{ post.created_at.strftime('%Y-%m-%d %H:%M') }}</small>
+        <div class="mt-2">
+            <form action="{{ url_for('post.comment_post', post_id=post.id) }}" method="post">
+                <input name="comment" class="form-control" placeholder="{{ _('Comment...') }}"
+                    {% if not current_user.is_authenticated %}disabled{% endif %} required>
+            </form>
+            {% if not current_user.is_authenticated %}
+                <small class="text-muted">{{ _('Please login to comment.') }}</small>
+            {% endif %}
+            {% for comment in post.comments %}
+                <div class="mt-1">
+                    {% if comment.user.profile_pic and comment.user.profile_pic != 'default.png' %}
+                        <img src="{{ url_for('static', filename='profile_pics/' ~ comment.user.profile_pic) }}" class="rounded me-2" width="32"><b>{{ comment.user.username }}</b>:
+                    {% else %}
+                        <i class="bi bi-person me-1"></i><b>{{ comment.user.username }}</b>:
+                    {% endif %}
+                    {{ comment.content }}
+                    {% if comment.user_id == current_user.id %}
+                    <form action="{{ url_for('post.delete_comment', comment_id=comment.id) }}" method="post" style="display:inline;">
+                        <button class="btn btn-link btn-sm text-danger"><i class="bi bi-trash"></i> {{ _('Delete') }}</button>
+                    </form>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% if not posts %}
+<div class="alert alert-info" role="alert">
+    {{ _('No posts available.') }}
+</div>
+{% endif %}
+<script src="{{ url_for('static', filename='js/feed.js') }}"></script>
+{% endblock %}

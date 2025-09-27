@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Users') }}{% endblock %}
+{% block content %}
+<h2><i class="bi bi-people me-2"></i>{{ _('All Users') }}</h2>
+<ul class="list-group">
+    {% for user_item in users %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>
+                {% if user_item.profile_pic and user_item.profile_pic != 'default.png' %}
+                    <img src="{{ url_for('static', filename='profile_pics/' + user_item.profile_pic) }}" alt="{{ user_item.username }}" class="profile-pic me-2">{{ user_item.username }}
+                {% else %}
+                    <i class="bi bi-person-circle me-1"></i>{{ user_item.username }}
+                {% endif %}
+            </span>
+            <div>
+            {% if user_item.id != user.id %}
+                {% set friendship = (user.friendships_sent | selectattr('receiver_id', 'equalto', user_item.id) | list) %}
+                {% set reverse_friendship = (user.friendships_received | selectattr('requester_id', 'equalto', user_item.id) | list) %}
+                {% if friendship and friendship[0].status == 'pending' %}
+                    <span class="badge bg-warning"><i class="bi bi-hourglass-split me-1"></i>{{ _('Request sent') }}</span>
+                {% elif reverse_friendship and reverse_friendship[0].status == 'pending' %}
+                    <span class="badge bg-info"><i class="bi bi-envelope-open me-1"></i>{{ _('Request received') }}</span>
+                {% elif (friendship and friendship[0].status == 'accepted') or (reverse_friendship and reverse_friendship[0].status == 'accepted') %}
+                    <span class="badge bg-success"><i class="bi bi-person-check me-1"></i>{{ _('Friend') }}</span>
+                {% else %}
+                    <form action="{{ url_for('friend.add_friend', user_id=user_item.id) }}" method="post" style="display:inline;">
+                        <button class="btn btn-sm btn-primary"><i class="bi bi-person-plus"></i> {{ _('Add Friend') }}</button>
+                    </form>
+                {% endif %}
+            {% endif %}
+            {% if user.is_admin %}
+                {% if not user_item.is_admin %}
+                <form action="{{ url_for('admin.make_admin', user_id=user_item.id) }}" method="post" style="display:inline;">
+                    <button class="btn btn-sm btn-success"><i class="bi bi-person-gear"></i> {{ _('Make Admin') }}</button>
+                </form>
+                {% elif not user_item.is_owner %}
+                <form action="{{ url_for('admin.remove_admin', user_id=user_item.id) }}" method="post" style="display:inline;">
+                    <button class="btn btn-sm btn-warning"><i class="bi bi-person-dash"></i> {{ _('Remove Admin') }}</button>
+                </form>
+                {% endif %}
+            {% endif %}
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

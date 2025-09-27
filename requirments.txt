@@ -1,0 +1,8 @@
+flask
+flask_login
+flask_migrate
+werkzeug
+flask_babel
+waitress
+authlib
+sqlalchemy

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}{{ ticket.title }}{% endblock %}
+{% block content %}
+<h2>{{ ticket.title }}</h2>
+<p><strong>{{ _('Status') }}:</strong>
+    {% if ticket.status == 'open' %}
+        <span class="badge bg-success">{{ _('Open') }}</span>
+    {% else %}
+        <span class="badge bg-secondary">{{ _('Closed') }}</span>
+    {% endif %}
+</p>
+<div class="mb-3">
+    {% for comment in comments %}
+        <div class="border rounded p-2 mb-2">
+            <strong>{{ comment.user.username }}</strong>
+            <span class="text-muted">{{ comment.created_at.strftime('%Y-%m-%d %H:%M') }}</span>
+            <p>{{ comment.message }}</p>
+        </div>
+    {% endfor %}
+</div>
+{% if ticket.status == 'open' %}
+<form method="POST">
+    <textarea name="message" class="form-control mb-2" placeholder="{{ _('Write a message...') }}" required></textarea>
+    <button class="btn btn-primary">{{ _('Send') }}</button>
+</form>
+<form method="POST" action="{{ url_for('support.support_close', request_id=ticket.id) }}">
+    <button class="btn btn-warning mt-2">{{ _('Close Ticket') }}</button>
+</form>
+{% else %}
+    <div class="alert alert-info">{{ _('This ticket is closed.') }}</div>
+{% endif %}
+{% if user.is_admin %}
+<form method="POST" action="{{ url_for('support.support_delete', request_id=ticket.id) }}" style="display:inline;">
+    <button class="btn btn-danger btn-sm" onclick="return confirm('Delete this ticket?')">
+        <i class="bi bi-trash"></i> {{ _('Delete') }}
+    </button>
+</form>
+{% endif %}
+<a href="{{ url_for('support.support') }}" class="btn btn-secondary mt-3">{{ _('Back to Support') }}</a>
+{% endblock %}

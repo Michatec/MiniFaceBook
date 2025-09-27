@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Discord Registration') }}{% endblock %}
+{% block content %}
+<h2>{{ _('Complete Registration') }}</h2>
+<h3>{{ _('Welcome,') }} <strong>{{ username }}</strong>!</h3>
+<p>{{ _('Please set a password for your account:') }}</p>
+<form method="POST">
+    <input type="hidden" name="username" value="{{ username }}">
+    <input type="hidden" name="email" value="{{ email }}">
+    <input type="hidden" name="discord_id" value="{{ discord_id }}">
+    <div class="form-group">
+        <label for="password">{{ _('Password') }}</label>
+        <input type="password" name="password" class="form-control" required minlength="8">
+    </div>
+    <div class="form-group">
+        <label for="confirm_password">{{ _('Confirm Password') }}</label>
+        <input type="password" name="confirm_password" class="form-control" required minlength="8">
+    </div>
+    <button type="submit" class="btn btn-primary">{{ _('Create Account') }}</button>
+    <a href="{{ url_for('log.login') }}" class="btn btn-secondary">{{ _('Cancel') }}</a>
+</form>
+{% endblock %}

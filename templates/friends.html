@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Friends') }}{% endblock %}
+{% block content %}
+<h2><i class="bi bi-people-fill me-2"></i>{{ _('Your Friends') }}</h2>
+<ul class="list-group mb-4">
+    {% for friend in friends %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span>
+          {% if friend.profile_pic and friend.profile_pic != 'default.png' %}
+            <img src="{{ url_for('static', filename='profile_pics/' + friend.profile_pic) }}" alt="{{ friend.username }}" class="profile-pic me-2">{{ friend.username }}
+          {% else %}
+            <i class="bi bi-person-circle me-1"></i>{{ friend.username }}
+          {% endif %}
+        </span>
+        <form action="{{ url_for('friend.remove_friend', user_id=friend.id) }}" method="post" style="display:inline;">
+          <button class="btn btn-warning btn-sm"><i class="bi bi-person-dash"></i> {{ _('Remove Friend') }}</button>
+        </form>
+      </li>
+    {% else %}
+        <li class="list-group-item">{{ _('No friends yet.') }}</li>
+    {% endfor %}
+</ul>
+<h4><i class="bi bi-person-plus me-2"></i>{{ _('Friend Requests') }}</h4>
+<ul class="list-group mb-3">
+  {% for req in requests %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <span>
+        {% if req.requester.profile_pic and req.requester.profile_pic != 'default.png' %}
+          <img src="{{ url_for('static', filename='profile_pics/' + req.requester.profile_pic) }}" alt="{{ req.requester.username }}" class="profile-pic me-2">{{ req.requester.username }}
+        {% else %}
+          <i class="bi bi-person-circle me-1"></i>{{ req.requester.username }}
+        {% endif %}
+      </span>
+      <div>
+        <form action="{{ url_for('friend.accept_friend', friendship_id=req.id) }}" method="post" style="display:inline;">
+          <button class="btn btn-success btn-sm"><i class="bi bi-check"></i> {{ _('Accept') }}</button>
+        </form>
+        <form action="{{ url_for('friend.reject_friend', friendship_id=req.id) }}" method="post" style="display:inline;">
+          <button class="btn btn-danger btn-sm"><i class="bi bi-x"></i> {{ _('Reject') }}</button>
+        </form>
+      </div>
+    </li>
+  {% else %}
+    <li class="list-group-item">{{ _('No new requests') }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

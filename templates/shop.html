@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Shop') }}{% endblock %}
+{% block content %}
+<h2><i class="bi bi-shop me-2"></i>{{ _('Shop') }}</h2>
+<p>{{ _('Deine Reward-Punkte:') }} <b>{{ current_user.reward_points() }}</b></p>
+{% if message %}
+  <div class="alert alert-info">{{ message }}</div>
+{% endif %}
+<div class="row">
+  {% for item in items %}
+    <div class="col-md-4 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <i class="bi {{ item.icon }} display-4 mb-2"></i>
+          <h5>{{ item.name }}</h5>
+          <p>{{ item.description }}</p>
+          <p><b>{{ item.price }}</b> {{ _('Points') }}</p>
+          {% if item.id in owned_ids %}
+            <button class="btn btn-secondary" disabled>{{ _('Bought') }}</button>
+          {% else %}
+            <form method="post">
+              <input type="hidden" name="item_id" value="{{ item.id }}">
+              <button class="btn btn-success" {% if current_user.reward_points() < item.price %}disabled{% endif %}>
+                <i class="bi bi-cart"></i> {{ _('Buy') }}
+              </button>
+            </form>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

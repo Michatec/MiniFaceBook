@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Notifications') }}{% endblock %}
+{% block content %}
+<h3>
+  <i class="bi bi-bell me-2"></i>
+  {{ _('Notifications') }}
+  <span class="badge bg-secondary">{{ notifications|length }}</span>
+  {% if notifications %}
+  <form action="{{ url_for('notif.delete_all_notifications') }}" method="post" style="display:inline;">
+    <button type="submit" class="btn btn-sm btn-outline-danger float-end">
+      <i class="bi bi-trash"></i> {{ _('Delete all') }}
+    </button>
+  </form>
+  {% endif %}
+</h3>
+<ul class="list-group">
+  {% for notif in notifications %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <span>
+        <i class="bi bi-info-circle text-info me-1"></i>
+        {{ notif.message }}
+        <span class="text-muted ms-2"><i class="bi bi-clock"></i> {{ notif.created_at.strftime('%Y-%m-%d %H:%M') }}</span>
+      </span>
+      <form action="{{ url_for('notif.delete_notification', notif_id=notif.id) }}" method="post" style="display:inline;">
+        <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> {{ _('Delete') }}</button>
+      </form>
+    </li>
+  {% else %}
+    <li class="list-group-item">{{ _('No notifications') }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

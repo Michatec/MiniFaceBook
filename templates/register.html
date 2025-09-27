@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Register') }}{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6 col-lg-5">
+    <div class="card shadow p-4 mt-4" style="border-radius:1rem;">
+      <h2 class="mb-4 text-center"><i class="bi bi-person-plus me-2"></i>{{ _('Register') }}</h2>
+      <form method="post">
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-person-circle me-1"></i>{{ _('Username') }}</label>
+          <input type="text" name="username" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-envelope-at me-1"></i>{{ _('Email') }}</label>
+          <input type="email" name="email" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-lock-fill me-1"></i>{{ _('Password') }}</label>
+          <input type="password" name="password" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-lock me-1"></i>{{ _('Confirm Password') }}</label>
+          <input type="password" name="confirm_password" class="form-control" required>
+        </div>
+        <div class="d-grid gap-2">
+          <button class="btn btn-success" type="submit"><i class="bi bi-person-plus me-1"></i>{{ _('Register') }}</button>
+        </div>
+        <div class="mt-3 text-center">
+          <span>{{ _('Already have an account?') }}</span>
+          <a href="{{ url_for('log.login') }}" class="btn btn-link"><i class="bi bi-box-arrow-in-right"></i> {{ _('Login') }}</a>
+        </div>
+        <div class="mt-4 text-center">
+          <a href="{{ url_for('discord.login_discord') }}" class="btn btn-primary">
+            <i class="bi bi-discord"></i> {{ _('Login with Discord') }}
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

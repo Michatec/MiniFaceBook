@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Edit Post') }}{% endblock %}
+{% block content %}
+<h2>{{ _('Edit Post') }}</h2>
+<form action="{{ url_for('post.update_post', post_id=post.id) }}" method="post" enctype="multipart/form-data" class="mb-3">
+    <div class="mb-3">
+        <label for="content" class="form-label">{{ _('Content') }}</label>
+        {% if not SHOPITEM_ID_EXTRA_TYPES in current_user.shop_items | map(attribute='item_id') | list %}
+            <p class="form-text" style="text-align: right;">{{ _('Limit: 250') }}</p>
+        {% else %}
+            <p class="form-text" style="text-align: right;">{{ _('Limit: 500') }}</p>
+        {% endif %} 
+        <textarea name="content" id="content" class="form-control" required>{{ post.content }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label for="visibility" class="form-label">{{ _('Visibility') }}</label>
+        <select name="visibility" id="visibility" class="form-select">
+            <option value="public" {% if post.visibility == 'public' %}selected{% endif %}>🌍 {{ _('Public') }}</option>
+            <option value="friends" {% if post.visibility == 'friends' %}selected{% endif %}>👥 {{ _('Friends only') }}</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="upload" class="form-label">{{ _('Upload Files') }}</label>
+        <input type="file" name="upload" id="upload" class="form-control">
+        {% if SHOPITEM_ID_EXTRA_UPLOAD in current_user.shop_items | map(attribute='item_id') | list %}
+            <input type="file" name="upload2" id="upload2" class="form-control">
+        {% endif %}
+        <small class="form-text text-muted">{{ _('You can upload images, videos, audio files, or documents.') }}</small>
+    </div>
+    <button type="submit" class="btn btn-primary">{{ _('Update Post') }}</button>
+    <a href="{{ url_for('post.feed') }}" class="btn btn-link">{{ _('Cancel') }}</a>
+</form>
+{% if post.uploads %}
+<div class="mb-3">
+    <h4>{{ _('Current Uploads') }}</h4>
+    {% for upload in post.uploads %}
+        <div class="mb-2">
+            {% if upload.filetype.startswith('image') %}
+                <img src="{{ url_for('static', filename='uploads/' ~ upload.filename) }}" class="img-thumbnail" style="max-width: 200px;">
+            {% elif upload.filetype.startswith('video') %}
+                <video src="{{ url_for('static', filename='uploads/' ~ upload.filename) }}" controls width="320"></video>
+            {% elif upload.filetype.startswith('audio') %}
+                <audio src="{{ url_for('static', filename='uploads/' ~ upload.filename) }}" controls></audio>
+            {% else %}
+                <a href="{{ url_for('static', filename='uploads/' ~ upload.filename) }}" download>{{ upload.filename }}</a>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% else %}
+<h2>{{ _('No uploads found for this post.') }}</h2>
+{% endif %}
+{% endblock %}
