@@ -36,6 +36,11 @@ MiniFacebook is a minimalist social network built with [Flask](https://flask.pal
     ```sh
     python main.py
     ```
+4. **Optional:**
+
+   Go to routes/example oauth.py
+   Paste Your Client ID and Client Secret from the Discord Dev portal.
+   And rename it oauth.py
 
 ## Help to translate
 
