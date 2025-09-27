@@ -6,11 +6,8 @@ from flask_babel import gettext as _
 try:
     from routes.oauth import discord
 except ImportError:
-    discord = None
+    pass
 from routes.login import login_user
-
-if discord is None:
-    abort("OAuth not configured. Please set up OAuth in routes/oauth.py")
 
 discord_bp = Blueprint('discord', __name__)
 

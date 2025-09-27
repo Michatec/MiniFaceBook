@@ -17,16 +17,18 @@
 <form action="{{ url_for('user.delete_account') }}" method="post" style="display:inline;">
     <button class="btn btn-danger"><i class="bi bi-person-x"></i> {{ _('Delete Account') }}</button>
 </form>
-{% if not user.discord_linked %}
-    <a href="{{ url_for('discord.link_discord') }}" class="btn btn-primary">
-        <i class="bi bi-discord"></i> {{ _('Link Discord Account') }}
-    </a>
-{% else %}
-    <span class="badge bg-success"><i class="bi bi-discord"></i> {{ _('Discord Linked') }}</span>
-    <form action="{{ url_for('discord.unlink_discord') }}" method="post" style="display:inline;">
-        <button class="btn btn-warning btn-sm" type="submit">
-            <i class="bi bi-x-circle"></i> {{ _('Unlink Discord') }}
-        </button>
-    </form>
+{% if discord is not none %}
+    {% if not user.discord_linked %}
+        <a href="{{ url_for('discord.link_discord') }}" class="btn btn-primary">
+            <i class="bi bi-discord"></i> {{ _('Link Discord Account') }}
+        </a>
+    {% else %}
+        <span class="badge bg-success"><i class="bi bi-discord"></i> {{ _('Discord Linked') }}</span>
+        <form action="{{ url_for('discord.unlink_discord') }}" method="post" style="display:inline;">
+            <button class="btn btn-warning btn-sm" type="submit">
+                <i class="bi bi-x-circle"></i> {{ _('Unlink Discord') }}
+            </button>
+        </form>
+    {% endif %}
 {% endif %}
 {% endblock %}

@@ -22,11 +22,13 @@
           <a href="{{ url_for('log.reset_password') }}" class="btn btn-link"><i class="bi bi-key"></i> {{ _('Forgot password?') }}</a>
         </div>
       </form>
+      {% if discord is not none %}
       <div class="mt-4 text-center">
         <a href="{{ url_for('discord.login_discord') }}" class="btn btn-primary">
           <i class="bi bi-discord"></i> {{ _('Login with Discord') }}
         </a>
       </div>
+      {% endif %}
     </div>
   </div>
 </div>

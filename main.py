@@ -52,7 +52,10 @@ if not os.path.exists('static/profile_pics'):
     os.makedirs('static/profile_pics')
 
 app.register_blueprint(admin_bp)
-app.register_blueprint(discord_bp)
+try:
+    app.register_blueprint(discord_bp)
+except (NameError, ImportError, RuntimeError, LookupError):
+    pass
 app.register_blueprint(post_bp)
 app.register_blueprint(log_bp)
 app.register_blueprint(support_bp)
@@ -102,6 +105,13 @@ babel.init_app(app, locale_selector=get_locale)
 
 def needs_admin_setup():
     return db.session.query(User).filter_by(is_admin=True).count() == 0
+
+@app.context_processor
+def inject_discord_available():
+    try:
+        from routes.oauth import discord
+    except ImportError:
+        return dict(discord=None)
 
 @app.context_processor
 def inject_user():
