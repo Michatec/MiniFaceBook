@@ -110,6 +110,7 @@ def needs_admin_setup():
 def inject_discord_available():
     try:
         from routes.oauth import discord
+        return dict(discord=discord)
     except ImportError:
         return dict(discord=None)
 
