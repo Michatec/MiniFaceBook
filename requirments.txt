@@ -6,3 +6,4 @@ flask_babel
 waitress
 authlib
 sqlalchemy
+requests
