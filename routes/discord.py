@@ -1,10 +1,16 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, request
+from flask import Blueprint, render_template, redirect, url_for, flash, request, abort
 from flask_login import login_required, current_user
 from models import db, User
 from werkzeug.security import generate_password_hash
 from flask_babel import gettext as _
-from routes.oauth import discord
+try:
+    from routes.oauth import discord
+except ImportError:
+    discord = None
 from routes.login import login_user
+
+if discord is None:
+    abort("OAuth not configured. Please set up OAuth in routes/oauth.py")
 
 discord_bp = Blueprint('discord', __name__)
 

@@ -16,7 +16,10 @@ from routes.friends import friends_bp
 from routes.notifications import noti_bp
 from routes.credits import credits_bp
 from models import db, User, Reward, Event, UserShopItem, ShopItem, SHOPITEM_ID_PREMIUM, SHOPITEM_ID_GOLDRAHMEN, SHOPITEM_ID_EXTRA_TYPES, SHOPITEM_ID_EXTRA_UPLOAD
-from routes.oauth import oauth
+try:
+    from routes.oauth import oauth
+except ImportError:
+    pass
 import re
 import os
 
@@ -34,7 +37,10 @@ app_login.login_view = 'log.login'
 app_login.login_message = _('Please log in to access this page.')
 app_login.login_message_category = 'info'
 babel = Babel(app)
-oauth.init_app(app)
+try:
+    oauth.init_app(app)
+except NameError:
+    pass
 
 if not os.path.exists('instance/site.db'):
     with app.app_context():
