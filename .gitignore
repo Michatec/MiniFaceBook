@@ -8,7 +8,6 @@ migrations
 *.log
 *.db
 *.env
-*.DS_Store
 .vscode
 routes/__pycache__
 tools
