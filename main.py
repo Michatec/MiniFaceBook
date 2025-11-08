@@ -229,11 +229,6 @@ def not_found(error):
         return redirect(url_for('post.feed'))
     return render_template('index.html'), 200
 
-@app.route('/secret')
-@login_required
-def secret():
-    return render_template('secret.html')
-
 if __name__ == '__main__':
     try:
         serve(app, host="0.0.0.0", port=80, threads=12)
