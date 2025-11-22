@@ -122,6 +122,7 @@
                 <img src="{{ url_for('static', filename='profile_pics/' ~ post.user.profile_pic) }}" width="32" class="rounded me-1" alt="Profile Picture">
                 {% endif %}
             {% endif %}
+            {{ post.user.username }}
           </td>
           <td>{{ post.content|truncate(50) }}</td>
           <td>
@@ -165,6 +166,7 @@
                 <img src="{{ url_for('static', filename='profile_pics/' ~ f.requester.profile_pic) }}" width="32" class="rounded me-1" alt="Profile Picture">
               {% endif %}
             {% endif %}
+            {{ f.requester.username }}
           </td>
           <td>
             {% if f.receiver.profile_pic and f.receiver.profile_pic != 'default.png' %}
@@ -174,6 +176,7 @@
                 <img src="{{ url_for('static', filename='profile_pics/' ~ f.receiver.profile_pic) }}" width="32" class="rounded me-1" alt="Profile Picture">
               {% endif %}
             {% endif %}
+            {{ f.receiver.username }}
           </td>
           <td>
             {% if f.status == 'accepted' %}
@@ -214,6 +217,7 @@
                 <img src="{{ url_for('static', filename='profile_pics/' ~ comment.user.profile_pic) }}" width="32" class="rounded me-1" alt="Profile Picture">
                 {% endif %}
             {% endif %}
+            {{ comment.user.username }}
           </td>
           <td>{{ comment.post.id }}</td>
           <td>{{ comment.content|truncate(50) }}</td>
@@ -334,6 +338,7 @@
                 <img src="{{ url_for('static', filename='profile_pics/' ~ usi.user.profile_pic) }}" width="32" class="rounded me-1" alt="Profile Picture">
               {% endif %}
             {% endif %}
+            {{ usi.user.username }}
           </td>
           <td>{{ usi.item.name }}</td>
         </tr>
@@ -364,6 +369,7 @@
                 <img src="{{ url_for('static', filename='profile_pics/' ~ user.profile_pic) }}" width="32" class="rounded me-1" alt="Profile Picture">
               {% endif %}
             {% endif %}
+            {{ user.username }}
           </td>
           <td>{{ user.reward_points() }}</td>
           <td>
