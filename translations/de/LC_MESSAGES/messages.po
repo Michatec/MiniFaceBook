@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-27 20:09+0200\n"
-"PO-Revision-Date: 2025-09-27 20:09+0200\n"
+"POT-Creation-Date: 2025-11-22 23:43+0100\n"
+"PO-Revision-Date: 2025-11-22 23:43+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
 "Language-Team: de <LL@li.org>\n"
@@ -18,43 +18,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
 
-#: main.py:34
+#: main.py:37
 msgid "Please log in to access this page."
 msgstr ""
 
-#: main.py:117 routes/discord.py:44 routes/login.py:46 routes/profile.py:56
+#: main.py:168 routes/discord.py:47 routes/login.py:46 routes/profile.py:56
 msgid "Passwords do not match."
 msgstr ""
 
-#: main.py:119 routes/login.py:48
+#: main.py:170 routes/login.py:48
 msgid "Username already exists."
 msgstr ""
 
-#: main.py:121 routes/login.py:50
+#: main.py:172 routes/login.py:50
 msgid "E-Mail already exists."
 msgstr ""
 
-#: main.py:123 routes/discord.py:41 routes/login.py:52 routes/profile.py:53
+#: main.py:174 routes/discord.py:44 routes/login.py:52 routes/profile.py:53
 msgid "Password must be at least 8 characters long."
 msgstr ""
 
-#: main.py:125 routes/login.py:54 routes/profile.py:44
+#: main.py:176 routes/login.py:54 routes/profile.py:44
 msgid "Invalid email address."
 msgstr ""
 
-#: main.py:127 routes/login.py:56 routes/profile.py:38
+#: main.py:178 routes/login.py:56 routes/profile.py:38
 msgid "Invalid username. Only alphanumeric characters are allowed."
 msgstr ""
 
-#: main.py:133
+#: main.py:184
 msgid "Admin account created. You can now log in."
 msgstr ""
 
-#: main.py:159
+#: main.py:210
 msgid "Already purchased!"
 msgstr ""
 
-#: main.py:167
+#: main.py:218
 msgid "Not enough points!"
 msgstr ""
 
@@ -126,27 +126,27 @@ msgstr ""
 msgid "All Data has been deleted."
 msgstr ""
 
-#: routes/discord.py:24
+#: routes/discord.py:27
 msgid "Logged in with Discord."
 msgstr ""
 
-#: routes/discord.py:27
+#: routes/discord.py:30
 msgid "No account linked with this Discord. Please register."
 msgstr ""
 
-#: routes/discord.py:47
+#: routes/discord.py:50
 msgid "Username already exists. Please Report It."
 msgstr ""
 
-#: routes/discord.py:60
+#: routes/discord.py:63
 msgid "Account created and logged in with Discord."
 msgstr ""
 
-#: routes/discord.py:77
+#: routes/discord.py:80
 msgid "Discord account linked!"
 msgstr ""
 
-#: routes/discord.py:86
+#: routes/discord.py:89
 msgid "Discord account unlinked!"
 msgstr ""
 
@@ -338,7 +338,11 @@ msgstr ""
 msgid "Account and all your data deleted."
 msgstr ""
 
-#: templates/403.html:2 templates/base.html:106 templates/index.html:2
+#: routes/user.py:112
+msgid "Added Gravatar profile picture."
+msgstr ""
+
+#: templates/403.html:2 templates/base.html:115 templates/index.html:2
 msgid "Home"
 msgstr ""
 
@@ -360,11 +364,11 @@ msgstr ""
 msgid "Admin"
 msgstr ""
 
-#: templates/admin.html:4 templates/base.html:39
+#: templates/admin.html:4 templates/base.html:40
 msgid "Admin Panel"
 msgstr ""
 
-#: templates/admin.html:8 templates/admin.html:39 templates/base.html:43
+#: templates/admin.html:8 templates/admin.html:39 templates/base.html:44
 #: templates/users.html:2
 msgid "Users"
 msgstr ""
@@ -373,19 +377,19 @@ msgstr ""
 msgid "Posts"
 msgstr ""
 
-#: templates/admin.html:14 templates/admin.html:133
+#: templates/admin.html:14 templates/admin.html:148
 msgid "Friendships"
 msgstr ""
 
-#: templates/admin.html:17 templates/admin.html:176
+#: templates/admin.html:17 templates/admin.html:195
 msgid "Comments"
 msgstr ""
 
-#: templates/admin.html:20 templates/admin.html:213
+#: templates/admin.html:20 templates/admin.html:234
 msgid "Uploads"
 msgstr ""
 
-#: templates/admin.html:23 templates/admin.html:250 templates/base.html:46
+#: templates/admin.html:23 templates/admin.html:271 templates/base.html:47
 #: templates/notifications.html:2 templates/notifications.html:6
 msgid "Notifications"
 msgstr ""
@@ -394,18 +398,18 @@ msgstr ""
 msgid "Events"
 msgstr ""
 
-#: templates/admin.html:29 templates/admin.html:297
+#: templates/admin.html:29 templates/admin.html:318
 msgid "Shop Orders"
 msgstr ""
 
-#: templates/admin.html:32 templates/admin.html:324
+#: templates/admin.html:32 templates/admin.html:347
 msgid "Reward Points"
 msgstr ""
 
-#: templates/admin.html:43 templates/admin.html:94 templates/admin.html:180
-#: templates/admin.html:221 templates/admin.html:258 templates/admin.html:301
-#: templates/admin.html:328 templates/reset_requests.html:11
-#: templates/reset_requests.html:42 templates/reset_requests.html:67
+#: templates/admin.html:43 templates/admin.html:107 templates/admin.html:199
+#: templates/admin.html:242 templates/admin.html:279 templates/admin.html:322
+#: templates/admin.html:351 templates/reset_requests.html:11
+#: templates/reset_requests.html:44 templates/reset_requests.html:71
 msgid "User"
 msgstr ""
 
@@ -422,152 +426,152 @@ msgstr ""
 msgid "Profile Pic"
 msgstr ""
 
-#: templates/admin.html:48 templates/admin.html:98 templates/admin.html:184
-#: templates/admin.html:225 templates/admin.html:330
+#: templates/admin.html:48 templates/admin.html:111 templates/admin.html:203
+#: templates/admin.html:246 templates/admin.html:353
 #: templates/reset_requests.html:13
 msgid "Actions"
 msgstr ""
 
-#: templates/admin.html:62 templates/profile.html:12
+#: templates/admin.html:75 templates/profile.html:17
 msgid "Delete Picture"
 msgstr ""
 
-#: templates/admin.html:69 templates/users.html:34
+#: templates/admin.html:82 templates/users.html:47
 msgid "Make Admin"
 msgstr ""
 
-#: templates/admin.html:73 templates/users.html:38
+#: templates/admin.html:86 templates/users.html:51
 msgid "Remove Admin"
 msgstr ""
 
-#: templates/admin.html:78
+#: templates/admin.html:91
 msgid "Delete User"
 msgstr ""
 
-#: templates/admin.html:90
+#: templates/admin.html:103
 msgid "All Posts"
 msgstr ""
 
-#: templates/admin.html:95 templates/admin.html:182 templates/edit_post.html:7
+#: templates/admin.html:108 templates/admin.html:201 templates/edit_post.html:7
 msgid "Content"
 msgstr ""
 
-#: templates/admin.html:96 templates/edit_post.html:16
+#: templates/admin.html:109 templates/edit_post.html:16
 msgid "Visibility"
 msgstr ""
 
-#: templates/admin.html:97 templates/admin.html:183 templates/admin.html:260
+#: templates/admin.html:110 templates/admin.html:202 templates/admin.html:281
 #: templates/support.html:26
 msgid "Created"
 msgstr ""
 
-#: templates/admin.html:114 templates/edit_post.html:18 templates/feed.html:18
-#: templates/feed.html:86 templates/my_posts.html:61
+#: templates/admin.html:129 templates/edit_post.html:18 templates/feed.html:18
+#: templates/feed.html:94 templates/my_posts.html:69
 msgid "Public"
 msgstr ""
 
-#: templates/admin.html:116 templates/base.html:44 templates/friends.html:2
+#: templates/admin.html:131 templates/base.html:45 templates/friends.html:2
 msgid "Friends"
 msgstr ""
 
-#: templates/admin.html:122
+#: templates/admin.html:137
 msgid "Delete Post"
 msgstr ""
 
-#: templates/admin.html:137
+#: templates/admin.html:152
 msgid "User 1"
 msgstr ""
 
-#: templates/admin.html:138
+#: templates/admin.html:153
 msgid "User 2"
 msgstr ""
 
-#: templates/admin.html:139 templates/support.html:25
+#: templates/admin.html:154 templates/support.html:25
 #: templates/support_thread.html:5
 msgid "Status"
 msgstr ""
 
-#: templates/admin.html:161
+#: templates/admin.html:180
 msgid "Accepted"
 msgstr ""
 
-#: templates/admin.html:163
+#: templates/admin.html:182
 msgid "Pending"
 msgstr ""
 
-#: templates/admin.html:165
+#: templates/admin.html:184
 msgid "Rejected"
 msgstr ""
 
-#: templates/admin.html:181 templates/feed.html:21
+#: templates/admin.html:200 templates/feed.html:21
 msgid "Post"
 msgstr ""
 
-#: templates/admin.html:202
+#: templates/admin.html:223
 msgid "Delete Comment"
 msgstr ""
 
-#: templates/admin.html:215
+#: templates/admin.html:236
 msgid "Delete All Uploads"
 msgstr ""
 
-#: templates/admin.html:222
+#: templates/admin.html:243
 msgid "Filename"
 msgstr ""
 
-#: templates/admin.html:223
+#: templates/admin.html:244
 msgid "Type"
 msgstr ""
 
-#: templates/admin.html:224
+#: templates/admin.html:245
 msgid "Uploaded"
 msgstr ""
 
-#: templates/admin.html:236 templates/feed.html:55 templates/my_posts.html:32
+#: templates/admin.html:257 templates/feed.html:63 templates/my_posts.html:40
 msgid "Download"
 msgstr ""
 
-#: templates/admin.html:238
+#: templates/admin.html:259
 msgid "Delete Upload"
 msgstr ""
 
-#: templates/admin.html:251
+#: templates/admin.html:272
 msgid "Are you sure you want to delete all notifications?"
 msgstr ""
 
-#: templates/admin.html:252
+#: templates/admin.html:273
 msgid "Delete All Notifications"
 msgstr ""
 
-#: templates/admin.html:259
+#: templates/admin.html:280
 msgid "Message"
 msgstr ""
 
-#: templates/admin.html:278
+#: templates/admin.html:299
 msgid "Recent Events"
 msgstr ""
 
-#: templates/admin.html:279
+#: templates/admin.html:300
 msgid "Are you sure you want to delete all events?"
 msgstr ""
 
-#: templates/admin.html:280
+#: templates/admin.html:301
 msgid "Delete All Events"
 msgstr ""
 
-#: templates/admin.html:302
+#: templates/admin.html:323
 msgid "Item"
 msgstr ""
 
-#: templates/admin.html:329 templates/shop.html:17
+#: templates/admin.html:352 templates/shop.html:17
 msgid "Points"
 msgstr ""
 
-#: templates/admin.html:347
+#: templates/admin.html:372
 msgid "Add Points"
 msgstr ""
 
-#: templates/admin.html:350
+#: templates/admin.html:375
 msgid "Remove Points"
 msgstr ""
 
@@ -584,65 +588,65 @@ msgstr ""
 msgid "New Password"
 msgstr ""
 
-#: templates/admin_set_password.html:10 templates/reset_requests.html:28
+#: templates/admin_set_password.html:10 templates/reset_requests.html:30
 msgid "Set Password"
 msgstr ""
 
-#: templates/base.html:40
+#: templates/base.html:41
 msgid "Reset Requests"
 msgstr ""
 
-#: templates/base.html:42 templates/base.html:51 templates/feed.html:2
+#: templates/base.html:43 templates/base.html:52 templates/feed.html:2
 msgid "Feed"
 msgstr ""
 
-#: templates/base.html:45 templates/my_posts.html:2 templates/my_posts.html:4
+#: templates/base.html:46 templates/my_posts.html:2 templates/my_posts.html:4
 msgid "My Posts"
 msgstr ""
 
-#: templates/base.html:47 templates/profile.html:2
+#: templates/base.html:48 templates/profile.html:2
 msgid "Profile"
 msgstr ""
 
-#: templates/base.html:48
+#: templates/base.html:49
 msgid "Logout"
 msgstr ""
 
-#: templates/base.html:49 templates/support.html:2 templates/support.html:15
+#: templates/base.html:50 templates/support.html:2 templates/support.html:15
 msgid "Support"
 msgstr ""
 
-#: templates/base.html:52 templates/index.html:16 templates/login.html:2
+#: templates/base.html:53 templates/index.html:16 templates/login.html:2
 #: templates/login.html:7 templates/login.html:18 templates/register.html:30
 #: templates/reset_password.html:17
 msgid "Login"
 msgstr ""
 
-#: templates/base.html:53 templates/index.html:17 templates/login.html:21
+#: templates/base.html:54 templates/index.html:17 templates/login.html:21
 #: templates/register.html:2 templates/register.html:7
 #: templates/register.html:26
 msgid "Register"
 msgstr ""
 
-#: templates/base.html:57
+#: templates/base.html:58
 msgid "Theme"
 msgstr ""
 
-#: templates/base.html:90
+#: templates/base.html:99
 #, python-format
 msgid "Welcome, %(username)s!"
 msgstr ""
 
-#: templates/base.html:94
+#: templates/base.html:103
 msgid "You are logged in as an admin."
 msgstr ""
 
-#: templates/base.html:107 templates/privacy_policy.html:2
+#: templates/base.html:116 templates/privacy_policy.html:2
 #: templates/privacy_policy.html:4
 msgid "Privacy Policy"
 msgstr ""
 
-#: templates/base.html:108 templates/credits.html:2 templates/credits.html:4
+#: templates/base.html:117 templates/credits.html:2 templates/credits.html:4
 msgid "Credits"
 msgstr ""
 
@@ -750,8 +754,8 @@ msgstr ""
 msgid "Limit: 500"
 msgstr ""
 
-#: templates/edit_post.html:19 templates/feed.html:19 templates/feed.html:84
-#: templates/my_posts.html:59
+#: templates/edit_post.html:19 templates/feed.html:19 templates/feed.html:92
+#: templates/my_posts.html:67
 msgid "Friends only"
 msgstr ""
 
@@ -776,7 +780,7 @@ msgid "No uploads found for this post."
 msgstr ""
 
 #: templates/edit_profile.html:2 templates/edit_profile.html:4
-#: templates/profile.html:16
+#: templates/profile.html:21
 msgid "Edit Profile"
 msgstr ""
 
@@ -814,41 +818,41 @@ msgstr ""
 msgid "to create a post."
 msgstr ""
 
-#: templates/feed.html:61 templates/my_posts.html:38
+#: templates/feed.html:69 templates/my_posts.html:46
 msgid "Download Video"
 msgstr ""
 
-#: templates/feed.html:64 templates/my_posts.html:41
+#: templates/feed.html:72 templates/my_posts.html:49
 msgid "Download Audio"
 msgstr ""
 
-#: templates/feed.html:70 templates/my_posts.html:47
+#: templates/feed.html:78 templates/my_posts.html:55
 msgid "Like"
 msgstr ""
 
-#: templates/feed.html:73 templates/my_posts.html:50
+#: templates/feed.html:81 templates/my_posts.html:58
 msgid "Unlike"
 msgstr ""
 
-#: templates/feed.html:77 templates/feed.html:107 templates/my_posts.html:53
-#: templates/my_posts.html:77 templates/notifications.html:25
+#: templates/feed.html:85 templates/feed.html:115 templates/my_posts.html:61
+#: templates/my_posts.html:85 templates/notifications.html:25
 #: templates/support_thread.html:35
 msgid "Delete"
 msgstr ""
 
-#: templates/feed.html:80 templates/my_posts.html:56
+#: templates/feed.html:88 templates/my_posts.html:64
 msgid "Edit"
 msgstr ""
 
-#: templates/feed.html:91 templates/my_posts.html:66
+#: templates/feed.html:99 templates/my_posts.html:74
 msgid "Comment..."
 msgstr ""
 
-#: templates/feed.html:95
+#: templates/feed.html:103
 msgid "Please login to comment."
 msgstr ""
 
-#: templates/feed.html:118 templates/my_posts.html:88
+#: templates/feed.html:126 templates/my_posts.html:96
 msgid "No posts available."
 msgstr ""
 
@@ -856,27 +860,27 @@ msgstr ""
 msgid "Your Friends"
 msgstr ""
 
-#: templates/friends.html:16
+#: templates/friends.html:29
 msgid "Remove Friend"
 msgstr ""
 
-#: templates/friends.html:20
+#: templates/friends.html:33
 msgid "No friends yet."
 msgstr ""
 
-#: templates/friends.html:23
+#: templates/friends.html:36
 msgid "Friend Requests"
 msgstr ""
 
-#: templates/friends.html:36
+#: templates/friends.html:62
 msgid "Accept"
 msgstr ""
 
-#: templates/friends.html:39 templates/reset_requests.html:30
+#: templates/friends.html:65 templates/reset_requests.html:32
 msgid "Reject"
 msgstr ""
 
-#: templates/friends.html:44
+#: templates/friends.html:70
 msgid "No new requests"
 msgstr ""
 
@@ -932,7 +936,7 @@ msgstr ""
 msgid "Forgot password?"
 msgstr ""
 
-#: templates/login.html:27 templates/register.html:34
+#: templates/login.html:28 templates/register.html:35
 msgid "Login with Discord"
 msgstr ""
 
@@ -999,27 +1003,31 @@ msgid ""
 "contact us."
 msgstr ""
 
-#: templates/profile.html:8
+#: templates/profile.html:9
 msgid "Upload Picture"
 msgstr ""
 
-#: templates/profile.html:15 templates/shop.html:2 templates/shop.html:4
+#: templates/profile.html:12
+msgid "Use Gravatar"
+msgstr ""
+
+#: templates/profile.html:20 templates/shop.html:2 templates/shop.html:4
 msgid "Shop"
 msgstr ""
 
-#: templates/profile.html:18
+#: templates/profile.html:23
 msgid "Delete Account"
 msgstr ""
 
-#: templates/profile.html:22
+#: templates/profile.html:28
 msgid "Link Discord Account"
 msgstr ""
 
-#: templates/profile.html:25
+#: templates/profile.html:31
 msgid "Discord Linked"
 msgstr ""
 
-#: templates/profile.html:28
+#: templates/profile.html:34
 msgid "Unlink Discord"
 msgstr ""
 
@@ -1043,25 +1051,21 @@ msgstr ""
 msgid "Delete All"
 msgstr ""
 
-#: templates/reset_requests.html:12 templates/reset_requests.html:43
-#: templates/reset_requests.html:68
+#: templates/reset_requests.html:12 templates/reset_requests.html:45
+#: templates/reset_requests.html:72
 msgid "Requested At"
 msgstr ""
 
-#: templates/reset_requests.html:38
+#: templates/reset_requests.html:40
 msgid "Completed Requests"
 msgstr ""
 
-#: templates/reset_requests.html:63
+#: templates/reset_requests.html:67
 msgid "Rejected Requests"
 msgstr ""
 
-#: templates/reset_requests.html:88
+#: templates/reset_requests.html:94
 msgid "No open reset requests."
-msgstr ""
-
-#: templates/secret.html:2
-msgid "Secret"
 msgstr ""
 
 #: templates/setup.html:2
@@ -1148,19 +1152,19 @@ msgstr ""
 msgid "All Users"
 msgstr ""
 
-#: templates/users.html:20
+#: templates/users.html:33
 msgid "Request sent"
 msgstr ""
 
-#: templates/users.html:22
+#: templates/users.html:35
 msgid "Request received"
 msgstr ""
 
-#: templates/users.html:24
+#: templates/users.html:37
 msgid "Friend"
 msgstr ""
 
-#: templates/users.html:27
+#: templates/users.html:40
 msgid "Add Friend"
 msgstr ""
 

@@ -1,6 +1,6 @@
-from flask import Blueprint, redirect, url_for, flash, render_template
+from flask import Blueprint, jsonify, redirect, request, url_for, flash, render_template
 from flask_login import login_required, current_user
-from models import db, Notification
+from models import User, db, Notification
 from flask_babel import gettext as _
 from datetime import datetime, timedelta
 
@@ -31,3 +31,20 @@ def notifications():
     db.session.commit()
     notifications = db.session.query(Notification).filter_by(user_id=current_user.id).order_by(Notification.created_at.desc()).all()
     return render_template('notifications.html', notifications=notifications)
+
+@noti_bp.route('/notifications_api')
+@login_required
+def notifications_api():
+    expire_time = datetime.now() - timedelta(days=3)
+    db.session.query(Notification).filter(Notification.created_at < expire_time).delete()
+    db.session.commit()
+    notifications = db.session.query(Notification).filter_by(user_id=current_user.id).order_by(Notification.created_at.desc()).all()
+    return jsonify(
+        [
+            {
+                'name': User.query.get(n.user_id).username,
+                'data': n.message,
+                'timestamp': n.created_at
+            } for n in notifications
+        ]
+    )

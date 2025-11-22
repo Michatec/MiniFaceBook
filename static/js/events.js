@@ -12,5 +12,8 @@ function reloadEvents() {
       });
 }
 
-setInterval(reloadEvents, 10000);
-window.onload = reloadEvents;
+$(function() {
+  setInterval(function() {
+    reloadEvents();
+  }, 1000);
+});

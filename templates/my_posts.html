@@ -7,13 +7,21 @@
     <div class="card-body">
         <div class="d-flex align-items-center mb-2">
           {% if post.user.profile_pic and post.user.profile_pic != 'default.png' %}
-                {% if SHOPITEM_ID_GOLDRAHMEN in post.user.shop_items | map(attribute='item_id') | list %}
-                    <img src="{{ url_for('static', filename='profile_pics/' ~ post.user.profile_pic) }}" class="profile-pic me-2" style="border-color: gold;">
-                {% else %}
-                    <img src="{{ url_for('static', filename='profile_pics/' ~ post.user.profile_pic) }}" class="profile-pic me-2">
-                {% endif %}
+            {% if post.user.profile_pic.startswith('http') %}
+              {% if SHOPITEM_ID_GOLDRAHMEN in post.user.shop_items | map(attribute='item_id') | list %}
+                <img src="{{ post.user.profile_pic }}" class="profile-pic me-2" style="border-color: gold;" alt="Profile Picture">
+              {% else %}
+                <img src="{{ post.user.profile_pic }}" class="profile-pic me-2" alt="Profile Picture">
+              {% endif %}
             {% else %}
-                <i class="bi bi-person-circle me-1"></i>
+              {% if SHOPITEM_ID_GOLDRAHMEN in post.user.shop_items | map(attribute='item_id') | list %}
+                <img src="{{ url_for('static', filename='profile_pics/' ~ post.user.profile_pic) }}" class="profile-pic me-2" style="border-color: gold;">
+              {% else %}
+                <img src="{{ url_for('static', filename='profile_pics/' ~ post.user.profile_pic) }}" class="profile-pic me-2">
+              {% endif %}
+            {% endif %}
+          {% else %}
+                <i class="bi bi-person-circle me-2"></i>
           {% endif %}
           <strong>{{ post.user.username }}</strong>
         </div>

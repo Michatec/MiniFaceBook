@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from datetime import datetime
+from hashlib import md5
 
 db = SQLAlchemy()
 
@@ -38,6 +39,10 @@ class User(UserMixin, db.Model):
 
     def reward_points(self):
         return sum(r.points for r in self.rewards)
+    
+    def avatar(self):
+        digest = md5(self.email.lower().encode('utf-8')).hexdigest()
+        return f'https://www.gravatar.com/avatar/{digest}?d=identicon&s=120'
 
 class Friendship(db.Model):
     id = db.Column(db.Integer, primary_key=True)

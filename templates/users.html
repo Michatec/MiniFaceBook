@@ -6,11 +6,24 @@
     {% for user_item in users %}
         <li class="list-group-item d-flex justify-content-between align-items-center">
             <span>
-                {% if user_item.profile_pic and user_item.profile_pic != 'default.png' %}
-                    <img src="{{ url_for('static', filename='profile_pics/' + user_item.profile_pic) }}" alt="{{ user_item.username }}" class="profile-pic me-2">{{ user_item.username }}
+            {% if user_item.profile_pic and user_item.profile_pic != 'default.png' %}
+                {% if user_item.profile_pic.startswith('http') %}
+                {% if SHOPITEM_ID_GOLDRAHMEN in user_item.shop_items | map(attribute='item_id') | list %}
+                    <img src="{{ user_item.profile_pic }}" class="profile-pic me-2" style="border-color: gold;" alt="Profile Picture">
                 {% else %}
-                    <i class="bi bi-person-circle me-1"></i>{{ user_item.username }}
+                    <img src="{{ user_item.profile_pic }}" class="profile-pic me-2" alt="Profile Picture">
                 {% endif %}
+                {% else %}
+                {% if SHOPITEM_ID_GOLDRAHMEN in user_item.shop_items | map(attribute='item_id') | list %}
+                    <img src="{{ url_for('static', filename='profile_pics/' ~ user_item.profile_pic) }}" class="profile-pic me-2" style="border-color: gold;">
+                {% else %}
+                    <img src="{{ url_for('static', filename='profile_pics/' ~ user_item.profile_pic) }}" class="profile-pic me-2">
+                {% endif %}
+                {% endif %}
+            {% else %}
+                    <i class="bi bi-person-circle me-2"></i>
+            {% endif %}
+            {{ user_item.username }}
             </span>
             <div>
             {% if user_item.id != user.id %}

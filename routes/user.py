@@ -102,3 +102,12 @@ def delete_account():
 def users():
     all_users = db.session.query(User).filter(User.id != current_user.id).all()
     return render_template('users.html', users=all_users)
+
+@user_bp.route('/use_gravatar', methods=['POST'])
+@login_required
+def gravatar():
+    avatar_url = current_user.avatar()
+    current_user.profile_pic = avatar_url
+    db.session.commit()
+    flash(_('Added Gravatar profile picture.'), 'success')
+    return redirect(url_for('profil.profile'))

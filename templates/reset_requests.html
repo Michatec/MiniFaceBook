@@ -18,9 +18,11 @@
     <tr>
       <td>
         {% if req.user.profile_pic and req.user.profile_pic != 'default.png' %}
-        <img src="{{ url_for('static', filename='profile_pics/' ~ req.user.profile_pic) }}" class="rounded me-2" width="32">{{ req.user.username }}
-        {% else %}
-        <i class="bi bi-person-circle me-1"></i>{{ req.user.username }}
+          {% if req.user.profile_pic.startswith('http') %}
+            <img src="{{ req.user.profile_pic }}" width="32" class="rounded me-1" alt="Profile Picture">
+          {% else %}
+            <img src="{{ url_for('static', filename='profile_pics/' ~ req.user.profile_pic) }}" width="32" class="rounded me-1" alt="Profile Picture">
+          {% endif %}
         {% endif %}
       </td>
       <td>{{ req.requested_at.strftime('%Y-%m-%d %H:%M') }}</td>
@@ -48,9 +50,11 @@
     <tr>
       <td>
         {% if req.user.profile_pic and req.user.profile_pic != 'default.png' %}
-        <img src="{{ url_for('static', filename='profile_pics/' ~ req.user.profile_pic) }}" class="rounded me-2" width="32">{{ req.user.username }}
-        {% else %}
-        <i class="bi bi-person-circle me-1"></i>{{ req.user.username }}
+          {% if req.user.profile_pic.startswith('http') %}
+            <img src="{{ req.user.profile_pic }}" width="32" class="rounded me-1" alt="Profile Picture">
+          {% else %}
+            <img src="{{ url_for('static', filename='profile_pics/' ~ req.user.profile_pic) }}" width="32" class="rounded me-1" alt="Profile Picture">
+          {% endif %}
         {% endif %}
       </td>
       <td>{{ req.requested_at.strftime('%Y-%m-%d %H:%M') }}</td>
@@ -73,9 +77,11 @@
     <tr>
       <td>
         {% if req.user.profile_pic and req.user.profile_pic != 'default.png' %}
-        <img src="{{ url_for('static', filename='profile_pics/' ~ req.user.profile_pic) }}" class="rounded me-2" width="32">{{ req.user.username }}
-        {% else %}
-        <i class="bi bi-person-circle me-1"></i>{{ req.user.username }}
+          {% if req.user.profile_pic.startswith('http') %}
+            <img src="{{ req.user.profile_pic }}" width="32" class="rounded me-1" alt="Profile Picture">
+          {% else %}
+            <img src="{{ url_for('static', filename='profile_pics/' ~ req.user.profile_pic) }}" width="32" class="rounded me-1" alt="Profile Picture">
+          {% endif %}
         {% endif %}
       </td>
       <td>{{ req.requested_at.strftime('%Y-%m-%d %H:%M') }}</td>

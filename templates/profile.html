@@ -3,10 +3,15 @@
 {% block content %}
 <p><i class="bi bi-envelope-at me-1"></i>{{ _('Email') }}: {{ user.email }}</p>
 
+{% if not user.profile_pic.startswith('http') %}
 <form action="{{ url_for('user.upload_pic') }}" method="post" enctype="multipart/form-data" class="mb-3">
     <input type="file" name="profile_pic" required>
     <button class="btn btn-secondary btn-sm" type="submit"><i class="bi bi-upload"></i> {{ _('Upload Picture') }}</button>
 </form>
+<form action="{{ url_for('user.gravatar') }}" method="post" style="display:inline;">
+    <button class="btn btn-secondary btn-sm"><i class="bi bi-globe"></i> {{ _('Use Gravatar') }}</button>
+</form>
+{% endif %}
 {% if user.profile_pic and user.profile_pic != 'default.png' %}
   <form action="{{ url_for('user.delete_pic') }}" method="post" style="display:inline;">
     <button class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> {{ _('Delete Picture') }}</button>

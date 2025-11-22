@@ -51,13 +51,26 @@
       <tbody>
         {% for user in users %}
         <tr>
-          <td>{% if user.profile_pic and user.profile_pic != 'default.png' %}<img src="{{ url_for('static', filename='profile_pics/' ~ user.profile_pic) }}" width="32" class="rounded me-1">{% endif %} {{ user.username }}</td>
+          <td>
+            {% if user.profile_pic and user.profile_pic != 'default.png' %}
+              {% if user.profile_pic.startswith('http') %}
+                  <img src="{{ user.profile_pic }}" width="32" class="rounded me-1" alt="Profile Picture">
+              {% else %}
+                <img src="{{ url_for('static', filename='profile_pics/' ~ user.profile_pic) }}" width="32" class="rounded me-1" alt="Profile Picture">
+                {% endif %}
+            {% endif %}
+            {{ user.username }}
+          </td>
           <td>{{ user.email }}</td>
           <td>{% if user.is_admin %}<i class="bi bi-check-lg text-success"></i>{% endif %}</td>
           <td>{% if user.is_owner %}<i class="bi bi-star-fill text-warning"></i>{% endif %}</td>
           <td>
             {% if user.profile_pic and user.profile_pic != 'default.png' %}
-              <img src="{{ url_for('static', filename='profile_pics/' ~ user.profile_pic) }}" width="32" class="rounded me-1">
+              {% if user.profile_pic.startswith('http') %}
+                  <img src="{{ user.profile_pic }}" width="32" class="rounded me-1" alt="Profile Picture">
+              {% else %}
+                  <img src="{{ url_for('static', filename='profile_pics/' ~ user.profile_pic) }}" width="32" class="rounded me-1" alt="Profile Picture">
+              {% endif %}
               <form action="{{ url_for('admin.admin_delete_pic', user_id=user.id) }}" method="post" style="display:inline;">
                 <button class="btn btn-danger btn-sm" title="{{ _('Delete Picture') }}"><i class="bi bi-image"></i></button>
               </form>
@@ -103,9 +116,11 @@
         <tr>
           <td>
             {% if post.user.profile_pic and post.user.profile_pic != 'default.png' %}
-              <img src="{{ url_for('static', filename='profile_pics/' ~ post.user.profile_pic) }}" alt="{{ post.user.username }}" class="rounded me-1" width="32">{{ post.user.username }}
-            {% else %}
-              <i class="bi bi-person-circle me-1"></i>{{ post.user.username }}
+              {% if post.user.profile_pic.startswith('http') %}
+                  <img src="{{ post.user.profile_pic }}" width="32" class="rounded me-1" alt="Profile Picture">
+              {% else %}
+                <img src="{{ url_for('static', filename='profile_pics/' ~ post.user.profile_pic) }}" width="32" class="rounded me-1" alt="Profile Picture">
+                {% endif %}
             {% endif %}
           </td>
           <td>{{ post.content|truncate(50) }}</td>
@@ -144,16 +159,20 @@
         <tr>
           <td>
             {% if f.requester.profile_pic and f.requester.profile_pic != 'default.png' %}
-              <img src="{{ url_for('static', filename='profile_pics/' ~ f.requester.profile_pic) }}" alt="{{ f.requester.username }}" class="rounded me-1" width="32">{{ f.requester.username }}
-            {% else %}
-              <i class="bi bi-person-circle me-1"></i>{{ f.requester.username }}
+              {% if f.requester.profile_pic.startswith('http') %}
+                  <img src="{{ f.requester.profile_pic }}" width="32" class="rounded me-1" alt="Profile Picture">
+              {% else %}
+                <img src="{{ url_for('static', filename='profile_pics/' ~ f.requester.profile_pic) }}" width="32" class="rounded me-1" alt="Profile Picture">
+              {% endif %}
             {% endif %}
           </td>
           <td>
             {% if f.receiver.profile_pic and f.receiver.profile_pic != 'default.png' %}
-              <img src="{{ url_for('static', filename='profile_pics/' ~ f.receiver.profile_pic) }}" alt="{{ f.receiver.username }}" class="rounded me-1" width="32">{{ f.receiver.username }}
-            {% else %}
-              <i class="bi bi-person-circle me-1"></i>{{ f.receiver.username }}
+              {% if f.receiver.profile_pic.startswith('http') %}
+                  <img src="{{ f.receiver.profile_pic }}" width="32" class="rounded me-1" alt="Profile Picture">
+              {% else %}
+                <img src="{{ url_for('static', filename='profile_pics/' ~ f.receiver.profile_pic) }}" width="32" class="rounded me-1" alt="Profile Picture">
+              {% endif %}
             {% endif %}
           </td>
           <td>
@@ -189,9 +208,11 @@
         <tr>
           <td>
             {% if comment.user.profile_pic and comment.user.profile_pic != 'default.png' %}
-              <img src="{{ url_for('static', filename='profile_pics/' ~ comment.user.profile_pic) }}" class="rounded me-2" width="32">{{ comment.user.username }}
-            {% else %}
-              <i class="bi bi-person-circle me-1"></i>{{ comment.user.username }}
+              {% if comment.user.profile_pic.startswith('http') %}
+                  <img src="{{ comment.user.profile_pic }}" width="32" class="rounded me-1" alt="Profile Picture">
+              {% else %}
+                <img src="{{ url_for('static', filename='profile_pics/' ~ comment.user.profile_pic) }}" width="32" class="rounded me-1" alt="Profile Picture">
+                {% endif %}
             {% endif %}
           </td>
           <td>{{ comment.post.id }}</td>
@@ -307,9 +328,11 @@
         <tr>
           <td>
             {% if usi.user.profile_pic and usi.user.profile_pic != 'default.png' %}
-              <img src="{{ url_for('static', filename='profile_pics/' ~ usi.user.profile_pic) }}" class="rounded me-2" width="32">{{ usi.user.username }}
-            {% else %}
-              <i class="bi bi-person-circle me-1"></i>{{ usi.user.username }}
+              {% if usi.user.profile_pic.startswith('http') %}
+                  <img src="{{ usi.user.profile_pic }}" width="32" class="rounded me-1" alt="Profile Picture">
+              {% else %}
+                <img src="{{ url_for('static', filename='profile_pics/' ~ usi.user.profile_pic) }}" width="32" class="rounded me-1" alt="Profile Picture">
+              {% endif %}
             {% endif %}
           </td>
           <td>{{ usi.item.name }}</td>
@@ -335,9 +358,11 @@
         <tr>
           <td>
             {% if user.profile_pic and user.profile_pic != 'default.png' %}
-              <img src="{{ url_for('static', filename='profile_pics/' ~ user.profile_pic) }}" class="rounded me-2" width="32">{{ user.username }}
-            {% else %}
-              <i class="bi bi-person-circle me-1"></i>{{ user.username }}
+              {% if user.profile_pic.startswith('http') %}
+                  <img src="{{ user.profile_pic }}" width="32" class="rounded me-1" alt="Profile Picture">
+              {% else %}
+                <img src="{{ url_for('static', filename='profile_pics/' ~ user.profile_pic) }}" width="32" class="rounded me-1" alt="Profile Picture">
+              {% endif %}
             {% endif %}
           </td>
           <td>{{ user.reward_points() }}</td>
@@ -358,7 +383,7 @@
     </table>
   </div>
 </div>
-<script src="{{ url_for('static', filename='js/adstop.js') }}"></script>
+<script src="{{ url_for('static', filename='js/adtab.js') }}"></script>
 <script>
   var triggerTabList = [].slice.call(document.querySelectorAll('#adminTab button'))
   triggerTabList.forEach(function (triggerEl) {
