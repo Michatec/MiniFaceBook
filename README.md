@@ -7,10 +7,12 @@ MiniFacebook is a minimalist social network built with [Flask](https://flask.pal
 - Share posts, images, videos, and documents
 - Friend requests and friends list
 - Activity notifications
+- Realtime notifications
 - Shop for premium features (e.g., gold frames, extra uploads)
 - Admin panel with user management
 - Multilingual (German/English)
 - Dark and light mode
+- Gravatar Addon
 - Discord login and linking
 - Support ticket system
 - Password reset via email
