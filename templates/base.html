@@ -108,7 +108,9 @@
     {% if SHOPITEM_ID_PREMIUM in user.shop_items | map(attribute='item_id') | list %}
       <span class="badge bg-warning text-dark"><i class="bi bi-star"></i> Premium</span>
     {% endif %}
-    <hr>
+    {% if user.is_authenticated %}
+        <hr>
+    {% endif %}
     {% block content %}{% endblock %}
   </div>
   <footer class="footer mt-auto py-3">
