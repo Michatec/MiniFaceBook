@@ -15,7 +15,7 @@ from routes.user import user_bp
 from routes.friends import friends_bp
 from routes.notifications import noti_bp
 from routes.credits import credits_bp
-from models import db, User, Reward, Event, UserShopItem, ShopItem, SHOPITEM_ID_PREMIUM, SHOPITEM_ID_GOLDRAHMEN, SHOPITEM_ID_EXTRA_TYPES, SHOPITEM_ID_EXTRA_UPLOAD
+from models import db, User, Reward, UserShopItem, ShopItem, SHOPITEM_ID_PREMIUM, SHOPITEM_ID_GOLDRAHMEN, SHOPITEM_ID_EXTRA_TYPES, SHOPITEM_ID_EXTRA_UPLOAD
 try:
     from routes.oauth import oauth
 except ImportError:
@@ -184,18 +184,6 @@ def setup():
             flash(_('Admin account created. You can now log in.'), 'success')
             return redirect(url_for('log.login'))
     return render_template('setup.html')
-
-@app.route('/api/events')
-@login_required
-def api_events():
-    if not current_user.is_admin:
-        abort(403)
-
-    events = db.session.query(Event).order_by(Event.timestamp.desc()).limit(20).all()
-    return jsonify([
-        {"timestamp": e.timestamp.strftime('%Y-%m-%d %H:%M'), "message": e.message}
-        for e in events
-    ])
 
 @app.route('/shop', methods=['GET', 'POST'])
 @login_required
