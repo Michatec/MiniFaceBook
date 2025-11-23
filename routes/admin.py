@@ -113,7 +113,7 @@ def admin_delete_post(post_id):
         db.session.add(notification)
         db.session.commit()
         flash(_('Post and associated files deleted.'), 'success')
-    return redirect(url_for('admin.admin'))
+    return redirect(url_for('admin.admin')+'#posts')
 
 @admin_bp.route('/delete_user/<int:user_id>', methods=['POST'])
 @login_required
@@ -121,7 +121,7 @@ def admin_delete_user(user_id):
     user = db.session.get(User, user_id)
     if user.is_owner:
         flash(_('Cannot delete the owner account.'), 'danger')
-        return redirect(url_for('admin.admin')) 
+        return redirect(url_for('admin.admin')+'#users')
     if user and not user.is_admin:
         event = Event(message=f"Admin {current_user.username} hat {user.username} gelöscht.")
         db.session.add(event)
@@ -158,7 +158,7 @@ def admin_delete_user(user_id):
         flash(_('User deleted.'), 'success')
     else:
         flash(_('Cannot delete admin or user not found.'), 'danger')
-    return redirect(url_for('admin.admin'))
+    return redirect(url_for('admin.admin')+'#users')
 
 @admin_bp.route('/delete_pic/<int:user_id>', methods=['POST'])
 @login_required
@@ -174,7 +174,7 @@ def admin_delete_pic(user_id):
         user.profile_pic = "default.png"
         db.session.commit()
         flash(_(f'Profile picture of {user.username} deleted.'), 'success')
-    return redirect(url_for('admin.admin'))
+    return redirect(url_for('admin.admin')+'#users')
 
 @admin_bp.route('/delete_all_notifications', methods=['POST'])
 @login_required
@@ -184,7 +184,7 @@ def admin_delete_all_notifications():
     db.session.query(Notification).delete()
     db.session.commit()
     flash(_('All notifications have been deleted.'), 'success')
-    return redirect(url_for('admin.admin'))
+    return redirect(url_for('admin.admin')+'#notifications')
 
 @admin_bp.route('/delete_all_events', methods=['POST'])
 @login_required
@@ -194,7 +194,7 @@ def admin_delete_all_events():
     db.session.query(Event).delete()
     db.session.commit()
     flash(_('All events have been deleted.'), 'success')
-    return redirect(url_for('admin.admin'))
+    return redirect(url_for('admin.admin')+'#events')
 
 @admin_bp.route('/delete_upload/<int:upload_id>', methods=['POST'])
 @login_required
@@ -212,7 +212,7 @@ def admin_delete_upload(upload_id):
         db.session.delete(upload)
         db.session.commit()
         flash(_('Upload deleted.'), 'success')
-    return redirect(url_for('admin.admin'))
+    return redirect(url_for('admin.admin')+'#uploads')
 
 @admin_bp.route('/delete_all_uploads', methods=['POST'])
 @login_required
@@ -230,7 +230,7 @@ def admin_delete_all_uploads():
         except Exception:
             pass
     flash(_('All uploads have been deleted.'), 'success')
-    return redirect(url_for('admin.admin'))
+    return redirect(url_for('admin.admin')+'#uploads')
 
 @admin_bp.route('/admin/points/<int:user_id>', methods=['POST'])
 @login_required
@@ -242,7 +242,7 @@ def admin_points(user_id):
         points = int(request.form['points'])
     except:
         flash(_('No Points entered!'))
-        return redirect(url_for('admin.admin'))
+        return redirect(url_for('admin.admin')+'#shop-orders')
     cuser = db.session.get(User, current_user.id)
     if not cuser.is_owner:
         abort(403)
@@ -258,7 +258,7 @@ def admin_points(user_id):
             flash(_('Points removed!'), 'success')
         else:
             flash(_("The user has not enough points to take!"), 'danger')
-    return redirect(url_for('admin.admin'))
+    return redirect(url_for('admin.admin')+'#shop-orders')
 
 @admin_bp.route('/make_admin/<int:user_id>', methods=['POST'])
 @login_required
@@ -270,7 +270,7 @@ def make_admin(user_id):
         user.is_admin = True
         db.session.commit()
         flash(_(f"{user.username} is now an admin."), "success")
-    return redirect(url_for('admin.admin'))
+    return redirect(url_for('admin.admin')+'#users')
 
 @admin_bp.route('/remove_admin/<int:user_id>', methods=['POST'])
 @login_required
@@ -284,7 +284,7 @@ def remove_admin(user_id):
         flash(_(f"Admin rights of {user.username} removed."), "info")
     else:
         flash(_("Owner cannot be removed!"), "danger")
-    return redirect(url_for('admin.admin'))
+    return redirect(url_for('admin.admin')+'#users')
 
 @admin_bp.route('/wipe_server', methods=['POST'])
 @login_required
