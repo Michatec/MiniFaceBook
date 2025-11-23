@@ -102,9 +102,13 @@
     {% if user.is_admin %}
       <p class="text-success">{{ _('You are logged in as an admin.') }}</p>
     {% endif %}
+    {% if user.is_authenticated %}
+      <span class="badge bg-secondary" id="check_notify">{{ _('You don’t have any notifications.') }}</span>
+    {% endif %}
     {% if SHOPITEM_ID_PREMIUM in user.shop_items | map(attribute='item_id') | list %}
       <span class="badge bg-warning text-dark"><i class="bi bi-star"></i> Premium</span>
     {% endif %}
+    <hr>
     {% block content %}{% endblock %}
   </div>
   <footer class="footer mt-auto py-3">
@@ -121,6 +125,7 @@
   <script>
         function set_message_count(n) {
             $('#message_count').text(n);
+            $('#check_notify').text('{{ _("You have ") }}' + n + '{{ _(" new notification/s") }}');
         }
         {% if current_user.is_authenticated %}
         $(function() {

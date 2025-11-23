@@ -44,7 +44,7 @@ def notifications_api():
             {
                 'name': User.query.get(n.user_id).username,
                 'data': n.message,
-                'timestamp': n.created_at
+                'created_at': n.created_at
             } for n in notifications
         ]
     )
