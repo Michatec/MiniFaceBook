@@ -76,9 +76,13 @@
             {% for comment in post.comments %}
                 <div class="mt-1">
                     {% if comment.user.profile_pic and comment.user.profile_pic != 'default.png' %}
-                        <img src="{{ url_for('static', filename='profile_pics/' ~ comment.user.profile_pic) }}" class="rounded me-2" width="32"><b>{{ comment.user.username }}</b>:
+                      {% if comment.user.profile_pic.startswith('http') %}
+                        <img src="{{ comment.user.profile_pic }}" class="rounded me-2" width="32" alt="Profile Picture"><b>{{ comment.user.username }}</b>:
+                      {% else %}
+                        <img src="{{ url_for('static', filename='profile_pics/' ~ comment.user.profile_pic) }}" class="rounded me-2" width="32" alt="Profile Picture"><b>{{ comment.user.username }}</b>:
+                      {% endif %}
                     {% else %}
-                        <i class="bi bi-person me-1"></i><b>{{ comment.user.username }}</b>:
+                          <i class="bi bi-person-circle me-2"></i><b>{{ comment.user.username }}</b>:
                     {% endif %}
                     {% if comment.user_id == current_user.id %}
                     <form action="{{ url_for('post.delete_comment', comment_id=comment.id) }}" method="post" style="display:inline;">
