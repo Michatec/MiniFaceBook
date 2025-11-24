@@ -177,7 +177,7 @@ msgstr "Beitrag gefällt mir."
 
 #: routes/like.py:40
 msgid "Like removed."
-msgstr "Wie entfernt."
+msgstr "Like entfernt."
 
 #: routes/login.py:20
 msgid "Logged in successfully."
@@ -329,7 +329,7 @@ msgstr "Konto und alle Ihre Daten wurden gelöscht."
 
 #: templates/403.html:2 templates/base.html:119 templates/index.html:2
 msgid "Home"
-msgstr "Heim"
+msgstr "Zuhause"
 
 #: templates/403.html:12
 msgid "This page is not accessible to you, you do not have the permissions to view it."
@@ -581,7 +581,7 @@ msgstr "Reset-Anfragen"
 
 #: templates/base.html:43 templates/base.html:52 templates/feed.html:2
 msgid "Feed"
-msgstr "Heim"
+msgstr "Zuhause"
 
 #: templates/base.html:46 templates/my_posts.html:2 templates/my_posts.html:4
 msgid "My Posts"
@@ -808,7 +808,7 @@ msgstr "Audio herunterladen"
 
 #: templates/feed_posts.html:52 templates/my_posts.html:55
 msgid "Like"
-msgstr "Wie"
+msgstr "Like"
 
 #: templates/feed_posts.html:55 templates/my_posts.html:58
 msgid "Unlike"
