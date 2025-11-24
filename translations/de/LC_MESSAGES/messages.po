@@ -581,7 +581,7 @@ msgstr "Reset-Anfragen"
 
 #: templates/base.html:43 templates/base.html:52 templates/feed.html:2
 msgid "Feed"
-msgstr "Füttern"
+msgstr "Heim"
 
 #: templates/base.html:46 templates/my_posts.html:2 templates/my_posts.html:4
 msgid "My Posts"
