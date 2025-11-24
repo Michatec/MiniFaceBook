@@ -812,7 +812,7 @@ msgstr "Like"
 
 #: templates/feed_posts.html:55 templates/my_posts.html:58
 msgid "Unlike"
-msgstr "Im Gegensatz zu"
+msgstr "Unlike"
 
 #: templates/feed_posts.html:59 templates/feed_posts.html:93
 #: templates/my_posts.html:61 templates/my_posts.html:89
