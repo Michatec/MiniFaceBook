@@ -1,1170 +1,1147 @@
-# German translations for PROJECT.
-# Copyright (C) 2025 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: PROJECT VERSION\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-22 23:43+0100\n"
-"PO-Revision-Date: 2025-11-22 23:43+0100\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: de\n"
-"Language-Team: de <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: MiniFacebook\n"
+"Language: de\n"
 
 #: main.py:37
 msgid "Please log in to access this page."
-msgstr ""
+msgstr "Bitte melde dich auf dieser Seite an."
 
 #: main.py:168 routes/discord.py:47 routes/login.py:46 routes/profile.py:56
 msgid "Passwords do not match."
-msgstr ""
+msgstr "Die Passwörter stimmen nicht überein."
 
 #: main.py:170 routes/login.py:48
 msgid "Username already exists."
-msgstr ""
+msgstr "Dieser Benutzername existiert bereits."
 
 #: main.py:172 routes/login.py:50
 msgid "E-Mail already exists."
-msgstr ""
+msgstr "E-Mail gibt es bereits."
 
 #: main.py:174 routes/discord.py:44 routes/login.py:52 routes/profile.py:53
 msgid "Password must be at least 8 characters long."
-msgstr ""
+msgstr "Das Passwort muss mindestens 8 Zeichen lang sein."
 
 #: main.py:176 routes/login.py:54 routes/profile.py:44
 msgid "Invalid email address."
-msgstr ""
+msgstr "Ungültige E-Mail-Adresse."
 
 #: main.py:178 routes/login.py:56 routes/profile.py:38
 msgid "Invalid username. Only alphanumeric characters are allowed."
-msgstr ""
+msgstr "Ungültiger Benutzername. Nur alphanumerische Zeichen sind zulässig."
 
 #: main.py:184
 msgid "Admin account created. You can now log in."
-msgstr ""
+msgstr "Administratorkonto erstellt. Sie können sich jetzt anmelden."
 
-#: main.py:210
+#: main.py:198
 msgid "Already purchased!"
-msgstr ""
+msgstr "Bereits gekauft!"
 
-#: main.py:218
+#: main.py:206
 msgid "Not enough points!"
-msgstr ""
+msgstr "Nicht genügend Punkte!"
 
 #: routes/admin.py:18
 msgid "All password reset requests have been deleted."
-msgstr ""
+msgstr "Alle Anfragen zum Zurücksetzen des Passworts wurden gelöscht."
 
 #: routes/admin.py:65
 msgid "Request rejected."
-msgstr ""
+msgstr "Anfrage abgelehnt."
 
 #: routes/admin.py:79
 msgid "Password too short."
-msgstr ""
+msgstr "Passwort zu kurz."
 
 #: routes/admin.py:115
 msgid "Post and associated files deleted."
-msgstr ""
+msgstr "Beitrag und zugehörige Dateien gelöscht."
 
 #: routes/admin.py:123
 msgid "Cannot delete the owner account."
-msgstr ""
+msgstr "Das Inhaberkonto kann nicht gelöscht werden."
 
 #: routes/admin.py:158
 msgid "User deleted."
-msgstr ""
+msgstr "Benutzer gelöscht."
 
 #: routes/admin.py:160
 msgid "Cannot delete admin or user not found."
-msgstr ""
+msgstr "Administrator oder Benutzer nicht gefunden – kann nicht gelöscht werden."
 
 #: routes/admin.py:186 routes/notifications.py:14
 msgid "All notifications have been deleted."
-msgstr ""
+msgstr "Alle Benachrichtigungen wurden gelöscht."
 
 #: routes/admin.py:196
 msgid "All events have been deleted."
-msgstr ""
+msgstr "Alle Ereignisse wurden gelöscht."
 
 #: routes/admin.py:214
 msgid "Upload deleted."
-msgstr ""
+msgstr "Upload gelöscht."
 
 #: routes/admin.py:232
 msgid "All uploads have been deleted."
-msgstr ""
+msgstr "Alle Uploads wurden gelöscht."
 
 #: routes/admin.py:244
 msgid "No Points entered!"
-msgstr ""
+msgstr "Keine Punkte erzielt!"
 
 #: routes/admin.py:252
 msgid "Points added!"
-msgstr ""
+msgstr "Punkte hinzugefügt!"
 
 #: routes/admin.py:258
 msgid "Points removed!"
-msgstr ""
+msgstr "Punkteabzug!"
 
 #: routes/admin.py:260
 msgid "The user has not enough points to take!"
-msgstr ""
+msgstr "Der Nutzer hat nicht genügend Punkte zum Einlösen!"
 
 #: routes/admin.py:286
 msgid "Owner cannot be removed!"
-msgstr ""
+msgstr "Der Eigentümer kann nicht entfernt werden!"
 
 #: routes/admin.py:329
 msgid "All Data has been deleted."
-msgstr ""
+msgstr "Alle Daten wurden gelöscht."
 
 #: routes/discord.py:27
 msgid "Logged in with Discord."
-msgstr ""
+msgstr "Mit Discord angemeldet."
 
 #: routes/discord.py:30
 msgid "No account linked with this Discord. Please register."
-msgstr ""
+msgstr "Es ist kein Konto mit diesem Discord-Server verknüpft. Bitte registriere dich."
 
 #: routes/discord.py:50
 msgid "Username already exists. Please Report It."
-msgstr ""
+msgstr "Dieser Benutzername ist bereits vergeben. Bitte melden Sie ihn."
 
 #: routes/discord.py:63
 msgid "Account created and logged in with Discord."
-msgstr ""
+msgstr "Ich habe einen Account erstellt und mich mit Discord angemeldet."
 
 #: routes/discord.py:80
 msgid "Discord account linked!"
-msgstr ""
+msgstr "Discord-Konto verknüpft!"
 
 #: routes/discord.py:89
 msgid "Discord account unlinked!"
-msgstr ""
+msgstr "Discord-Konto nicht mehr verknüpft!"
 
 #: routes/friends.py:12
 msgid "You cannot add yourself as a friend."
-msgstr ""
+msgstr "Du kannst dich nicht selbst als Freund hinzufügen."
 
 #: routes/friends.py:16
 msgid "Friend request already sent."
-msgstr ""
+msgstr "Freundschaftsanfrage wurde bereits gesendet."
 
 #: routes/friends.py:31
 msgid "Friend request sent!"
-msgstr ""
+msgstr "Freundschaftsanfrage gesendet!"
 
 #: routes/friends.py:47
 msgid "Friend request accepted!"
-msgstr ""
+msgstr "Freundschaftsanfrage angenommen!"
 
 #: routes/friends.py:49 routes/friends.py:65
 msgid "Invalid friend request."
-msgstr ""
+msgstr "Ungültige Freundschaftsanfrage."
 
 #: routes/friends.py:63
 msgid "Friend request rejected."
-msgstr ""
+msgstr "Freundschaftsanfrage abgelehnt."
 
 #: routes/friends.py:91
 msgid "Friendship ended."
-msgstr ""
+msgstr "Die Freundschaft ist beendet."
 
 #: routes/like.py:13 routes/like.py:34 routes/post.py:63 routes/post.py:75
 msgid "Post does not exist."
-msgstr ""
+msgstr "Dieser Beitrag existiert nicht."
 
 #: routes/like.py:26
 msgid "Post liked."
-msgstr ""
+msgstr "Beitrag gefällt mir."
 
 #: routes/like.py:40
 msgid "Like removed."
-msgstr ""
+msgstr "Wie entfernt."
 
 #: routes/login.py:20
 msgid "Logged in successfully."
-msgstr ""
+msgstr "Erfolgreich eingeloggt."
 
 #: routes/login.py:26
 msgid "Invalid username or password."
-msgstr ""
+msgstr "Ungültiger Benutzername oder ungültiges Passwort."
 
 #: routes/login.py:33
 msgid "Logged out successfully."
-msgstr ""
+msgstr "Erfolgreich abgemeldet."
 
 #: routes/login.py:58
 msgid "Username must be between 3 and 20 characters long."
-msgstr ""
+msgstr "Der Benutzername muss zwischen 3 und 20 Zeichen lang sein."
 
 #: routes/login.py:64
 msgid "Registered successfully. You can now log in."
-msgstr ""
+msgstr "Die Registrierung war erfolgreich. Sie können sich jetzt anmelden."
 
 #: routes/login.py:77
 msgid "Reset request sent to admins."
-msgstr ""
+msgstr "Reset-Anfrage an Administratoren gesendet."
 
 #: routes/login.py:79
 msgid "No user with this email."
-msgstr ""
+msgstr "Kein Benutzer mit dieser E-Mail-Adresse."
 
 #: routes/post.py:23 routes/post.py:88
 msgid "Post content is too long. Please limit it to 250 characters."
-msgstr ""
+msgstr "Der Beitrag ist zu lang. Bitte beschränken Sie ihn auf 250 Zeichen."
 
 #: routes/post.py:27 routes/post.py:92
 msgid "Post content is too long. Please limit it to 500 characters."
-msgstr ""
+msgstr "Der Beitrag ist zu lang. Bitte beschränken Sie ihn auf 500 Zeichen."
 
 #: routes/post.py:31
 msgid "Post created!"
-msgstr ""
+msgstr "Beitrag erstellt!"
 
 #: routes/post.py:51
 msgid "You have created a new post."
-msgstr ""
+msgstr "Du hast einen neuen Beitrag erstellt."
 
 #: routes/post.py:66 routes/post.py:78
 msgid "You do not have permission to edit this post."
-msgstr ""
+msgstr "Sie haben keine Berechtigung, diesen Beitrag zu bearbeiten."
 
 #: routes/post.py:132
 msgid "Your post has been updated."
-msgstr ""
+msgstr "Ihr Beitrag wurde aktualisiert."
 
 #: routes/post.py:137
 msgid "Post updated!"
-msgstr ""
+msgstr "Beitrag aktualisiert!"
 
-#: routes/post.py:192
+#: routes/post.py:198
 msgid "Your post has been deleted."
-msgstr ""
+msgstr "Dein Beitrag wurde gelöscht."
 
-#: routes/post.py:197
+#: routes/post.py:203
 msgid "Post and all uploads deleted."
-msgstr ""
+msgstr "Beitrag und alle Uploads gelöscht."
 
-#: routes/post.py:199 routes/post.py:211
+#: routes/post.py:205 routes/post.py:217
 msgid "Not allowed."
-msgstr ""
+msgstr "Nicht erlaubt."
 
-#: routes/post.py:209
+#: routes/post.py:215
 msgid "Comment deleted."
-msgstr ""
+msgstr "Kommentar gelöscht."
 
-#: routes/post.py:221
+#: routes/post.py:227
 msgid "You have written a comment."
-msgstr ""
+msgstr "Sie haben einen Kommentar verfasst."
 
 #: routes/profile.py:30
 msgid "Username and email cannot be empty."
-msgstr ""
+msgstr "Benutzername und E-Mail-Adresse dürfen nicht leer sein."
 
 #: routes/profile.py:35
 msgid "Username already taken."
-msgstr ""
+msgstr "Benutzername bereits vergeben."
 
 #: routes/profile.py:47
 msgid "E-Mail already taken."
-msgstr ""
+msgstr "E-Mail-Adresse bereits vergeben."
 
 #: routes/profile.py:61
 msgid "No changes made."
-msgstr ""
+msgstr "Es wurden keine Änderungen vorgenommen."
 
 #: routes/profile.py:64
 msgid "Profile updated."
-msgstr ""
+msgstr "Profil aktualisiert."
 
 #: routes/support.py:26
 msgid "Support request created!"
-msgstr ""
+msgstr "Supportanfrage erstellt!"
 
 #: routes/support.py:28
 msgid "Title and message required!"
-msgstr ""
+msgstr "Titel und Nachricht erforderlich!"
 
 #: routes/support.py:44
 msgid "Ticket closed."
-msgstr ""
+msgstr "Ticket geschlossen."
 
 #: routes/support.py:58
 msgid "Comment added."
-msgstr ""
+msgstr "Kommentar hinzugefügt."
 
 #: routes/support.py:60
 msgid "Message required!"
-msgstr ""
+msgstr "Nachricht erforderlich!"
 
 #: routes/support.py:74
 msgid "Support ticket deleted."
-msgstr ""
+msgstr "Support-Ticket gelöscht."
 
 #: routes/support.py:76
 msgid "Ticket not found."
-msgstr ""
+msgstr "Ticket nicht gefunden."
 
 #: routes/user.py:22
 msgid "Profile picture deleted."
-msgstr ""
+msgstr "Profilbild gelöscht."
 
 #: routes/user.py:45
 msgid "You have changed your profile picture."
-msgstr ""
+msgstr "Du hast dein Profilbild geändert."
 
 #: routes/user.py:52
 msgid "Profile picture updated."
-msgstr ""
+msgstr "Profilbild aktualisiert."
 
 #: routes/user.py:59
 msgid "You cannot delete the owner account."
-msgstr ""
+msgstr "Das Besitzerkonto kann nicht gelöscht werden."
 
 #: routes/user.py:62
 msgid "You cannot delete an admin account."
-msgstr ""
+msgstr "Ein Administratorkonto kann nicht gelöscht werden."
 
 #: routes/user.py:97
 msgid "Account and all your data deleted."
-msgstr ""
+msgstr "Konto und alle Ihre Daten wurden gelöscht."
 
-#: routes/user.py:112
-msgid "Added Gravatar profile picture."
-msgstr ""
-
-#: templates/403.html:2 templates/base.html:115 templates/index.html:2
+#: templates/403.html:2 templates/base.html:119 templates/index.html:2
 msgid "Home"
-msgstr ""
+msgstr "Heim"
 
 #: templates/403.html:12
-msgid ""
-"This page is not accessible to you, you do not have the permissions to "
-"view it."
-msgstr ""
+msgid "This page is not accessible to you, you do not have the permissions to view it."
+msgstr "Diese Seite ist für Sie nicht zugänglich, Sie haben keine Berechtigung, sie anzuzeigen."
 
 #: templates/403.html:13
 msgid "You can go back from the page."
-msgstr ""
+msgstr "Sie können von dieser Seite zurückgehen."
 
 #: templates/403.html:15 templates/index.html:18 templates/index.html:20
 msgid "Go to Feed"
-msgstr ""
+msgstr "Zum Feed gehen"
 
 #: templates/admin.html:2 templates/admin.html:45
 msgid "Admin"
-msgstr ""
+msgstr "Administrator"
 
 #: templates/admin.html:4 templates/base.html:40
 msgid "Admin Panel"
-msgstr ""
+msgstr "Admin-Panel"
 
 #: templates/admin.html:8 templates/admin.html:39 templates/base.html:44
 #: templates/users.html:2
 msgid "Users"
-msgstr ""
+msgstr "Benutzer"
 
 #: templates/admin.html:11
 msgid "Posts"
-msgstr ""
+msgstr "Beiträge"
 
-#: templates/admin.html:14 templates/admin.html:148
+#: templates/admin.html:14 templates/admin.html:149
 msgid "Friendships"
-msgstr ""
+msgstr "Freundschaften"
 
-#: templates/admin.html:17 templates/admin.html:195
+#: templates/admin.html:17 templates/admin.html:198
 msgid "Comments"
-msgstr ""
+msgstr "Kommentare"
 
-#: templates/admin.html:20 templates/admin.html:234
+#: templates/admin.html:20 templates/admin.html:238
 msgid "Uploads"
-msgstr ""
+msgstr "Uploads"
 
-#: templates/admin.html:23 templates/admin.html:271 templates/base.html:47
+#: templates/admin.html:23 templates/admin.html:275 templates/base.html:47
 #: templates/notifications.html:2 templates/notifications.html:6
 msgid "Notifications"
-msgstr ""
+msgstr "Benachrichtigungen"
 
 #: templates/admin.html:26
 msgid "Events"
-msgstr ""
+msgstr "Veranstaltungen"
 
-#: templates/admin.html:29 templates/admin.html:318
+#: templates/admin.html:29 templates/admin.html:322
 msgid "Shop Orders"
-msgstr ""
+msgstr "Shop-Bestellungen"
 
-#: templates/admin.html:32 templates/admin.html:347
+#: templates/admin.html:32 templates/admin.html:352
 msgid "Reward Points"
-msgstr ""
+msgstr "Prämienpunkte"
 
-#: templates/admin.html:43 templates/admin.html:107 templates/admin.html:199
-#: templates/admin.html:242 templates/admin.html:279 templates/admin.html:322
-#: templates/admin.html:351 templates/reset_requests.html:11
+#: templates/admin.html:43 templates/admin.html:107 templates/admin.html:202
+#: templates/admin.html:246 templates/admin.html:283 templates/admin.html:326
+#: templates/admin.html:356 templates/reset_requests.html:11
 #: templates/reset_requests.html:44 templates/reset_requests.html:71
 msgid "User"
-msgstr ""
+msgstr "Benutzer"
 
 #: templates/admin.html:44 templates/edit_profile.html:11
 #: templates/profile.html:4 templates/register.html:14 templates/setup.html:11
 msgid "Email"
-msgstr ""
+msgstr "E-Mail"
 
 #: templates/admin.html:46
 msgid "Owner"
-msgstr ""
+msgstr "Eigentümer"
 
 #: templates/admin.html:47
 msgid "Profile Pic"
-msgstr ""
+msgstr "Profilbild"
 
-#: templates/admin.html:48 templates/admin.html:111 templates/admin.html:203
-#: templates/admin.html:246 templates/admin.html:353
+#: templates/admin.html:48 templates/admin.html:111 templates/admin.html:206
+#: templates/admin.html:250 templates/admin.html:358
 #: templates/reset_requests.html:13
 msgid "Actions"
-msgstr ""
+msgstr "Aktionen"
 
 #: templates/admin.html:75 templates/profile.html:17
 msgid "Delete Picture"
-msgstr ""
+msgstr "Bild löschen"
 
 #: templates/admin.html:82 templates/users.html:47
 msgid "Make Admin"
-msgstr ""
+msgstr "Administrator erstellen"
 
 #: templates/admin.html:86 templates/users.html:51
 msgid "Remove Admin"
-msgstr ""
+msgstr "Administrator entfernen"
 
 #: templates/admin.html:91
 msgid "Delete User"
-msgstr ""
+msgstr "Benutzer löschen"
 
 #: templates/admin.html:103
 msgid "All Posts"
-msgstr ""
+msgstr "Alle Beiträge"
 
-#: templates/admin.html:108 templates/admin.html:201 templates/edit_post.html:7
+#: templates/admin.html:108 templates/admin.html:204 templates/edit_post.html:7
 msgid "Content"
-msgstr ""
+msgstr "Inhalt"
 
 #: templates/admin.html:109 templates/edit_post.html:16
 msgid "Visibility"
-msgstr ""
+msgstr "Sichtweite"
 
-#: templates/admin.html:110 templates/admin.html:202 templates/admin.html:281
+#: templates/admin.html:110 templates/admin.html:205 templates/admin.html:285
 #: templates/support.html:26
 msgid "Created"
-msgstr ""
+msgstr "Erstellt"
 
-#: templates/admin.html:129 templates/edit_post.html:18 templates/feed.html:18
-#: templates/feed.html:94 templates/my_posts.html:69
+#: templates/admin.html:130 templates/edit_post.html:18 templates/feed.html:18
+#: templates/feed_posts.html:68 templates/my_posts.html:69
 msgid "Public"
-msgstr ""
+msgstr "Öffentlich"
 
-#: templates/admin.html:131 templates/base.html:45 templates/friends.html:2
+#: templates/admin.html:132 templates/base.html:45 templates/friends.html:2
 msgid "Friends"
-msgstr ""
+msgstr "Freunde"
 
-#: templates/admin.html:137
+#: templates/admin.html:138
 msgid "Delete Post"
-msgstr ""
-
-#: templates/admin.html:152
-msgid "User 1"
-msgstr ""
+msgstr "Beitrag löschen"
 
 #: templates/admin.html:153
-msgid "User 2"
-msgstr ""
+msgid "User 1"
+msgstr "Benutzer 1"
 
-#: templates/admin.html:154 templates/support.html:25
+#: templates/admin.html:154
+msgid "User 2"
+msgstr "Benutzer 2"
+
+#: templates/admin.html:155 templates/support.html:25
 #: templates/support_thread.html:5
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
-#: templates/admin.html:180
+#: templates/admin.html:183
 msgid "Accepted"
-msgstr ""
+msgstr "Akzeptiert"
 
-#: templates/admin.html:182
+#: templates/admin.html:185
 msgid "Pending"
-msgstr ""
+msgstr "Ausstehend"
 
-#: templates/admin.html:184
+#: templates/admin.html:187
 msgid "Rejected"
-msgstr ""
+msgstr "Abgelehnt"
 
-#: templates/admin.html:200 templates/feed.html:21
+#: templates/admin.html:203 templates/feed.html:21
 msgid "Post"
-msgstr ""
+msgstr "Post"
 
-#: templates/admin.html:223
+#: templates/admin.html:227
 msgid "Delete Comment"
-msgstr ""
+msgstr "Kommentar löschen"
 
-#: templates/admin.html:236
+#: templates/admin.html:240
 msgid "Delete All Uploads"
-msgstr ""
+msgstr "Alle Uploads löschen"
 
-#: templates/admin.html:243
+#: templates/admin.html:247
 msgid "Filename"
-msgstr ""
+msgstr "Dateiname"
 
-#: templates/admin.html:244
+#: templates/admin.html:248
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
-#: templates/admin.html:245
+#: templates/admin.html:249
 msgid "Uploaded"
-msgstr ""
+msgstr "Hochgeladen"
 
-#: templates/admin.html:257 templates/feed.html:63 templates/my_posts.html:40
+#: templates/admin.html:261 templates/feed_posts.html:37
+#: templates/my_posts.html:40
 msgid "Download"
-msgstr ""
+msgstr "Herunterladen"
 
-#: templates/admin.html:259
+#: templates/admin.html:263
 msgid "Delete Upload"
-msgstr ""
+msgstr "Hochladen löschen"
 
-#: templates/admin.html:272
+#: templates/admin.html:276
 msgid "Are you sure you want to delete all notifications?"
-msgstr ""
+msgstr "Möchten Sie wirklich alle Benachrichtigungen löschen?"
 
-#: templates/admin.html:273
+#: templates/admin.html:277
 msgid "Delete All Notifications"
-msgstr ""
+msgstr "Alle Benachrichtigungen löschen"
 
-#: templates/admin.html:280
+#: templates/admin.html:284
 msgid "Message"
-msgstr ""
+msgstr "Nachricht"
 
-#: templates/admin.html:299
+#: templates/admin.html:303
 msgid "Recent Events"
-msgstr ""
+msgstr "Aktuelle Ereignisse"
 
-#: templates/admin.html:300
+#: templates/admin.html:304
 msgid "Are you sure you want to delete all events?"
-msgstr ""
+msgstr "Möchten Sie wirklich alle Ereignisse löschen?"
 
-#: templates/admin.html:301
+#: templates/admin.html:305
 msgid "Delete All Events"
-msgstr ""
+msgstr "Alle Ereignisse löschen"
 
-#: templates/admin.html:323
+#: templates/admin.html:327
 msgid "Item"
-msgstr ""
+msgstr "Artikel"
 
-#: templates/admin.html:352 templates/shop.html:17
+#: templates/admin.html:357 templates/shop.html:17
 msgid "Points"
-msgstr ""
+msgstr "Punkte"
 
-#: templates/admin.html:372
+#: templates/admin.html:378
 msgid "Add Points"
-msgstr ""
+msgstr "Punkte hinzufügen"
 
-#: templates/admin.html:375
+#: templates/admin.html:381
 msgid "Remove Points"
-msgstr ""
+msgstr "Punkte abziehen"
 
 #: templates/admin_set_password.html:2
 msgid "Set New Password"
-msgstr ""
+msgstr "Neues Passwort festlegen"
 
 #: templates/admin_set_password.html:4
-#, python-format
 msgid "Set New Password for %(username)s"
-msgstr ""
+msgstr "Neues Passwort für %(Benutzername)s festlegen"
 
 #: templates/admin_set_password.html:7
 msgid "New Password"
-msgstr ""
+msgstr "Neues Passwort"
 
 #: templates/admin_set_password.html:10 templates/reset_requests.html:30
 msgid "Set Password"
-msgstr ""
+msgstr "Passwort festlegen"
 
 #: templates/base.html:41
 msgid "Reset Requests"
-msgstr ""
+msgstr "Reset-Anfragen"
 
 #: templates/base.html:43 templates/base.html:52 templates/feed.html:2
 msgid "Feed"
-msgstr ""
+msgstr "Füttern"
 
 #: templates/base.html:46 templates/my_posts.html:2 templates/my_posts.html:4
 msgid "My Posts"
-msgstr ""
+msgstr "Meine Beiträge"
 
 #: templates/base.html:48 templates/profile.html:2
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: templates/base.html:49
 msgid "Logout"
-msgstr ""
+msgstr "Abmelden"
 
 #: templates/base.html:50 templates/support.html:2 templates/support.html:15
 msgid "Support"
-msgstr ""
+msgstr "Unterstützung"
 
 #: templates/base.html:53 templates/index.html:16 templates/login.html:2
 #: templates/login.html:7 templates/login.html:18 templates/register.html:30
 #: templates/reset_password.html:17
 msgid "Login"
-msgstr ""
+msgstr "Login"
 
 #: templates/base.html:54 templates/index.html:17 templates/login.html:21
 #: templates/register.html:2 templates/register.html:7
 #: templates/register.html:26
 msgid "Register"
-msgstr ""
+msgstr "Registrieren"
 
 #: templates/base.html:58
 msgid "Theme"
-msgstr ""
+msgstr "Thema"
 
 #: templates/base.html:99
-#, python-format
 msgid "Welcome, %(username)s!"
-msgstr ""
+msgstr "Willkommen, %(username)s!"
 
 #: templates/base.html:103
 msgid "You are logged in as an admin."
-msgstr ""
+msgstr "Sie sind als Administrator angemeldet."
 
-#: templates/base.html:116 templates/privacy_policy.html:2
+#: templates/base.html:120 templates/privacy_policy.html:2
 #: templates/privacy_policy.html:4
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Datenschutzrichtlinie"
 
-#: templates/base.html:117 templates/credits.html:2 templates/credits.html:4
+#: templates/base.html:121 templates/credits.html:2 templates/credits.html:4
 msgid "Credits"
-msgstr ""
+msgstr "Credits"
 
 #: templates/credits.html:5
 msgid "This project was developed by"
-msgstr ""
+msgstr "Dieses Projekt wurde entwickelt von"
 
 #: templates/credits.html:5
 msgid "Special thanks to all contributors and supporters."
-msgstr ""
+msgstr "Ein besonderer Dank gilt allen Mitwirkenden und Unterstützern."
 
 #: templates/credits.html:6
 msgid "Translators:"
-msgstr ""
+msgstr "Übersetzer:"
 
 #: templates/credits.html:8
 msgid "German:"
-msgstr ""
+msgstr "Deutsch:"
 
 #: templates/credits.html:9
 msgid "English:"
-msgstr ""
+msgstr "Englisch:"
 
 #: templates/credits.html:11
-msgid ""
-"Special thanks to the open-source community for their invaluable "
-"resources and tools."
-msgstr ""
+msgid "Special thanks to the open-source community for their invaluable resources and tools."
+msgstr "Ein besonderer Dank gilt der Open-Source-Community für ihre unschätzbaren Ressourcen und Werkzeuge."
 
 #: templates/credits.html:12
 msgid "Design inspired by various open-source projects and communities."
-msgstr ""
+msgstr "Das Design ist von verschiedenen Open-Source-Projekten und -Communities inspiriert."
 
 #: templates/credits.html:13
 msgid "Backend powered by Flask and SQLAlchemy."
-msgstr ""
+msgstr "Backend basierend auf Flask und SQLAlchemy."
 
 #: templates/credits.html:14
 msgid "Frontend built with Bootstrap and jQuery."
-msgstr ""
+msgstr "Frontend erstellt mit Bootstrap und jQuery."
 
 #: templates/credits.html:15
 msgid "Icons by FontAwesome and other open-source resources."
-msgstr ""
+msgstr "Icons von FontAwesome und anderen Open-Source-Ressourcen."
 
 #: templates/credits.html:16
 msgid "Hosted on a secure and reliable platform."
-msgstr ""
+msgstr "Gehostet auf einer sicheren und zuverlässigen Plattform."
 
 #: templates/credits.html:17
 msgid "If you would like to contribute, please reach out to us."
-msgstr ""
+msgstr "Wenn Sie einen Beitrag leisten möchten, kontaktieren Sie uns bitte."
 
 #: templates/credits.html:18 templates/privacy_policy.html:14
 msgid "GitHub Repository"
-msgstr ""
+msgstr "GitHub-Repository"
 
 #: templates/credits.html:19 templates/privacy_policy.html:15
 msgid "Thank you for using our application!"
-msgstr ""
+msgstr "Vielen Dank, dass Sie unsere Anwendung nutzen!"
 
 #: templates/discord_register.html:2
 msgid "Discord Registration"
-msgstr ""
+msgstr "Discord-Registrierung"
 
 #: templates/discord_register.html:4
 msgid "Complete Registration"
-msgstr ""
+msgstr "Vollständige Registrierung"
 
 #: templates/discord_register.html:5
 msgid "Welcome,"
-msgstr ""
+msgstr "Willkommen,"
 
 #: templates/discord_register.html:6
 msgid "Please set a password for your account:"
-msgstr ""
+msgstr "Bitte legen Sie ein Passwort für Ihr Konto fest:"
 
 #: templates/discord_register.html:12 templates/login.html:14
 #: templates/register.html:18 templates/setup.html:15
 msgid "Password"
-msgstr ""
+msgstr "Passwort"
 
 #: templates/discord_register.html:16 templates/register.html:22
 #: templates/setup.html:19
 msgid "Confirm Password"
-msgstr ""
+msgstr "Passwort bestätigen"
 
 #: templates/discord_register.html:19
 msgid "Create Account"
-msgstr ""
+msgstr "Benutzerkonto erstellen"
 
 #: templates/discord_register.html:20 templates/edit_post.html:31
 msgid "Cancel"
-msgstr ""
+msgstr "Stornieren"
 
 #: templates/edit_post.html:2 templates/edit_post.html:4
 msgid "Edit Post"
-msgstr ""
+msgstr "Beitrag bearbeiten"
 
 #: templates/edit_post.html:9 templates/feed.html:7
 msgid "Limit: 250"
-msgstr ""
+msgstr "Limit: 250"
 
 #: templates/edit_post.html:11 templates/feed.html:9
 msgid "Limit: 500"
-msgstr ""
+msgstr "Limit: 500"
 
-#: templates/edit_post.html:19 templates/feed.html:19 templates/feed.html:92
-#: templates/my_posts.html:67
+#: templates/edit_post.html:19 templates/feed.html:19
+#: templates/feed_posts.html:66 templates/my_posts.html:67
 msgid "Friends only"
-msgstr ""
+msgstr "Nur für Freunde"
 
 #: templates/edit_post.html:23
 msgid "Upload Files"
-msgstr ""
+msgstr "Dateien hochladen"
 
 #: templates/edit_post.html:28 templates/feed.html:16
 msgid "You can upload images, videos, audio files, or documents."
-msgstr ""
+msgstr "Sie können Bilder, Videos, Audiodateien oder Dokumente hochladen."
 
 #: templates/edit_post.html:30
 msgid "Update Post"
-msgstr ""
+msgstr "Update-Beitrag"
 
 #: templates/edit_post.html:35
 msgid "Current Uploads"
-msgstr ""
+msgstr "Aktuelle Uploads"
 
 #: templates/edit_post.html:51
 msgid "No uploads found for this post."
-msgstr ""
+msgstr "Für diesen Beitrag wurden keine Uploads gefunden."
 
 #: templates/edit_profile.html:2 templates/edit_profile.html:4
 #: templates/profile.html:21
 msgid "Edit Profile"
-msgstr ""
+msgstr "Profil bearbeiten"
 
 #: templates/edit_profile.html:7 templates/login.html:10
 #: templates/register.html:10 templates/reset_password.html:10
 #: templates/setup.html:7
 msgid "Username"
-msgstr ""
+msgstr "Benutzername"
 
 #: templates/edit_profile.html:15
 msgid "New Password (optional)"
-msgstr ""
+msgstr "Neues Passwort (optional)"
 
 #: templates/edit_profile.html:19
 msgid "Confirm New Password"
-msgstr ""
+msgstr "Neues Passwort bestätigen"
 
 #: templates/edit_profile.html:22
 msgid "Save"
-msgstr ""
+msgstr "Speichern"
 
 #: templates/feed.html:11
 msgid "What's on your mind?"
-msgstr ""
+msgstr "Was hast du im Kopf?"
 
 #: templates/feed.html:25
 msgid "Please"
-msgstr ""
+msgstr "Bitte"
 
 #: templates/feed.html:25
 msgid "log in"
-msgstr ""
+msgstr "einloggen"
 
 #: templates/feed.html:25
 msgid "to create a post."
-msgstr ""
+msgstr "einen Beitrag erstellen."
 
-#: templates/feed.html:69 templates/my_posts.html:46
+#: templates/feed_posts.html:43 templates/my_posts.html:46
 msgid "Download Video"
-msgstr ""
+msgstr "Video herunterladen"
 
-#: templates/feed.html:72 templates/my_posts.html:49
+#: templates/feed_posts.html:46 templates/my_posts.html:49
 msgid "Download Audio"
-msgstr ""
+msgstr "Audio herunterladen"
 
-#: templates/feed.html:78 templates/my_posts.html:55
+#: templates/feed_posts.html:52 templates/my_posts.html:55
 msgid "Like"
-msgstr ""
+msgstr "Wie"
 
-#: templates/feed.html:81 templates/my_posts.html:58
+#: templates/feed_posts.html:55 templates/my_posts.html:58
 msgid "Unlike"
-msgstr ""
+msgstr "Im Gegensatz zu"
 
-#: templates/feed.html:85 templates/feed.html:115 templates/my_posts.html:61
-#: templates/my_posts.html:85 templates/notifications.html:25
-#: templates/support_thread.html:35
+#: templates/feed_posts.html:59 templates/feed_posts.html:93
+#: templates/my_posts.html:61 templates/my_posts.html:89
+#: templates/notifications.html:25 templates/support_thread.html:35
 msgid "Delete"
-msgstr ""
+msgstr "Löschen"
 
-#: templates/feed.html:88 templates/my_posts.html:64
+#: templates/feed_posts.html:62 templates/my_posts.html:64
 msgid "Edit"
-msgstr ""
+msgstr "Bearbeiten"
 
-#: templates/feed.html:99 templates/my_posts.html:74
+#: templates/feed_posts.html:73 templates/my_posts.html:74
 msgid "Comment..."
-msgstr ""
+msgstr "Kommentar..."
 
-#: templates/feed.html:103
+#: templates/feed_posts.html:77
 msgid "Please login to comment."
-msgstr ""
+msgstr "Bitte melden Sie sich an, um einen Kommentar zu hinterlassen."
 
-#: templates/feed.html:126 templates/my_posts.html:96
+#: templates/feed_posts.html:104 templates/my_posts.html:100
 msgid "No posts available."
-msgstr ""
+msgstr "Keine Beiträge verfügbar."
 
 #: templates/friends.html:4
 msgid "Your Friends"
-msgstr ""
+msgstr "Deine Freunde"
 
 #: templates/friends.html:29
 msgid "Remove Friend"
-msgstr ""
+msgstr "Freund entfernen"
 
 #: templates/friends.html:33
 msgid "No friends yet."
-msgstr ""
+msgstr "Noch keine Freunde."
 
 #: templates/friends.html:36
 msgid "Friend Requests"
-msgstr ""
+msgstr "Freundschaftsanfragen"
 
 #: templates/friends.html:62
 msgid "Accept"
-msgstr ""
+msgstr "Akzeptieren"
 
 #: templates/friends.html:65 templates/reset_requests.html:32
 msgid "Reject"
-msgstr ""
+msgstr "Ablehnen"
 
 #: templates/friends.html:70
 msgid "No new requests"
-msgstr ""
+msgstr "Keine neuen Anfragen"
 
 #: templates/index.html:12
-msgid ""
-"MiniFacebook is a minimalist social network for sharing posts, images, "
-"and messages with friends."
-msgstr ""
+msgid "MiniFacebook is a minimalist social network for sharing posts, images, and messages with friends."
+msgstr "MiniFacebook ist ein minimalistisches soziales Netzwerk zum Teilen von Beiträgen, Bildern und Nachrichten mit Freunden."
 
 #: templates/index.html:13
 msgid "Fast, simple, data-saving - and with"
-msgstr ""
+msgstr "Schnell, einfach, datensparend – und mit"
 
 #: templates/index.html:13 templates/index.html:37
 msgid "Dark Mode!"
-msgstr ""
+msgstr "Dunkelmodus!"
 
 #: templates/index.html:27
 msgid "About MiniFacebook"
-msgstr ""
+msgstr "Über MiniFacebook"
 
 #: templates/index.html:30
 msgid "Share posts, images & videos"
-msgstr ""
+msgstr "Beiträge, Bilder und Videos teilen"
 
 #: templates/index.html:31
 msgid "Friendships & notifications"
-msgstr ""
+msgstr "Freundschaften & Benachrichtigungen"
 
 #: templates/index.html:32
 msgid "Modern"
-msgstr ""
+msgstr "Modern"
 
 #: templates/index.html:32
 msgid "Dark/Light Mode"
-msgstr ""
+msgstr "Dunkel-/Hellmodus"
 
 #: templates/index.html:33
 msgid "Open Source & privacy-friendly"
-msgstr ""
+msgstr "Open Source & datenschutzfreundlich"
 
 #: templates/index.html:36
-msgid ""
-"is a private, data-saving network for you and your friends. No ads, no "
-"data sharing - just fun in sharing and communicating."
-msgstr ""
+msgid "is a private, data-saving network for you and your friends. No ads, no data sharing - just fun in sharing and communicating."
+msgstr "ist ein privates, datensparendes Netzwerk für dich und deine Freunde. Keine Werbung, keine Datenweitergabe – einfach nur Spaß am Teilen und Kommunizieren."
 
 #: templates/index.html:37
 msgid "Developed with love,"
-msgstr ""
+msgstr "Mit Liebe entwickelt,"
 
 #: templates/login.html:22
 msgid "Forgot password?"
-msgstr ""
+msgstr "Passwort vergessen?"
 
 #: templates/login.html:28 templates/register.html:35
 msgid "Login with Discord"
-msgstr ""
+msgstr "Melde dich mit Discord an"
 
 #: templates/notifications.html:11
 msgid "Delete all"
-msgstr ""
+msgstr "Alles löschen"
 
 #: templates/notifications.html:29
 msgid "No notifications"
-msgstr ""
+msgstr "Keine Benachrichtigungen"
 
 #: templates/privacy_policy.html:5
-msgid ""
-"Your privacy is important to us. This privacy policy explains how we "
-"collect, use, and protect your information when you use our application."
-msgstr ""
+msgid "Your privacy is important to us. This privacy policy explains how we collect, use, and protect your information when you use our application."
+msgstr "Der Schutz Ihrer Daten ist uns wichtig. Diese Datenschutzrichtlinie erklärt, wie wir Ihre Daten erfassen, verwenden und schützen, wenn Sie unsere Anwendung nutzen."
 
 #: templates/privacy_policy.html:6
-msgid ""
-"We collect personal information that you provide to us, such as your "
-"name, email address, and any other information you choose to share."
-msgstr ""
+msgid "We collect personal information that you provide to us, such as your name, email address, and any other information you choose to share."
+msgstr "Wir erfassen personenbezogene Daten, die Sie uns zur Verfügung stellen, wie beispielsweise Ihren Namen, Ihre E-Mail-Adresse und alle anderen Informationen, die Sie uns mitteilen möchten."
 
 #: templates/privacy_policy.html:7
-msgid ""
-"We use this information to provide and improve our services, communicate "
-"with you, and personalize your experience."
-msgstr ""
+msgid "We use this information to provide and improve our services, communicate with you, and personalize your experience."
+msgstr "Wir nutzen diese Informationen, um unsere Dienstleistungen bereitzustellen und zu verbessern, mit Ihnen zu kommunizieren und Ihr Nutzererlebnis zu personalisieren."
 
 #: templates/privacy_policy.html:8
-msgid ""
-"We do not share your personal information with third parties without your"
-" consent, except as required by law or to protect our rights."
-msgstr ""
+msgid "We do not share your personal information with third parties without your consent, except as required by law or to protect our rights."
+msgstr "Wir geben Ihre personenbezogenen Daten ohne Ihre Zustimmung nicht an Dritte weiter, es sei denn, dies ist gesetzlich vorgeschrieben oder zum Schutz unserer Rechte erforderlich."
 
 #: templates/privacy_policy.html:9
-msgid ""
-"We implement security measures to protect your information from "
-"unauthorized access, alteration, disclosure, or destruction."
-msgstr ""
+msgid "We implement security measures to protect your information from unauthorized access, alteration, disclosure, or destruction."
+msgstr "Wir setzen Sicherheitsmaßnahmen ein, um Ihre Daten vor unbefugtem Zugriff, Veränderung, Offenlegung oder Zerstörung zu schützen."
 
 #: templates/privacy_policy.html:10
-msgid ""
-"You have the right to access, correct, or delete your personal "
-"information at any time. Please contact us if you wish to exercise these "
-"rights."
-msgstr ""
+msgid "You have the right to access, correct, or delete your personal information at any time. Please contact us if you wish to exercise these rights."
+msgstr "Sie haben jederzeit das Recht, Ihre personenbezogenen Daten einzusehen, zu berichtigen oder zu löschen. Bitte kontaktieren Sie uns, wenn Sie diese Rechte ausüben möchten."
 
 #: templates/privacy_policy.html:11
-msgid ""
-"We may update this privacy policy from time to time. We will notify you "
-"of any changes by posting the new privacy policy on this page."
-msgstr ""
+msgid "We may update this privacy policy from time to time. We will notify you of any changes by posting the new privacy policy on this page."
+msgstr "Wir können diese Datenschutzrichtlinie von Zeit zu Zeit aktualisieren. Wir werden Sie über alle Änderungen informieren, indem wir die neue Datenschutzrichtlinie auf dieser Seite veröffentlichen."
 
 #: templates/privacy_policy.html:12
-msgid ""
-"By using our application, you agree to the terms of this privacy policy. "
-"If you do not agree, please do not use our application."
-msgstr ""
+msgid "By using our application, you agree to the terms of this privacy policy. If you do not agree, please do not use our application."
+msgstr "Durch die Nutzung unserer Anwendung stimmen Sie den Bedingungen dieser Datenschutzrichtlinie zu. Sollten Sie damit nicht einverstanden sein, nutzen Sie unsere Anwendung bitte nicht."
 
 #: templates/privacy_policy.html:13
-msgid ""
-"If you have any questions or concerns about this privacy policy, please "
-"contact us."
-msgstr ""
+msgid "If you have any questions or concerns about this privacy policy, please contact us."
+msgstr "Sollten Sie Fragen oder Bedenken bezüglich dieser Datenschutzrichtlinie haben, kontaktieren Sie uns bitte."
 
 #: templates/profile.html:9
 msgid "Upload Picture"
-msgstr ""
-
-#: templates/profile.html:12
-msgid "Use Gravatar"
-msgstr ""
+msgstr "Bild hochladen"
 
 #: templates/profile.html:20 templates/shop.html:2 templates/shop.html:4
 msgid "Shop"
-msgstr ""
+msgstr "Geschäft"
 
 #: templates/profile.html:23
 msgid "Delete Account"
-msgstr ""
+msgstr "Konto löschen"
 
 #: templates/profile.html:28
 msgid "Link Discord Account"
-msgstr ""
+msgstr "Discord-Konto verknüpfen"
 
 #: templates/profile.html:31
 msgid "Discord Linked"
-msgstr ""
+msgstr "Discord-Link"
 
 #: templates/profile.html:34
 msgid "Unlink Discord"
-msgstr ""
+msgstr "Discord-Link entfernen"
 
 #: templates/register.html:29
 msgid "Already have an account?"
-msgstr ""
+msgstr "Sie haben bereits ein Konto?"
 
 #: templates/reset_password.html:2 templates/reset_password.html:7
 msgid "Reset Password"
-msgstr ""
+msgstr "Passwort zurücksetzen"
 
 #: templates/reset_password.html:14
 msgid "Request Reset"
-msgstr ""
+msgstr "Zurücksetzen anfordern"
 
 #: templates/reset_requests.html:2 templates/reset_requests.html:5
 msgid "Password Reset Requests"
-msgstr ""
+msgstr "Anträge auf Passwortzurücksetzung"
 
 #: templates/reset_requests.html:6
 msgid "Delete All"
-msgstr ""
+msgstr "Alles löschen"
 
 #: templates/reset_requests.html:12 templates/reset_requests.html:45
 #: templates/reset_requests.html:72
 msgid "Requested At"
-msgstr ""
+msgstr "Angefordert bei"
 
 #: templates/reset_requests.html:40
 msgid "Completed Requests"
-msgstr ""
+msgstr "Abgeschlossene Anfragen"
 
 #: templates/reset_requests.html:67
 msgid "Rejected Requests"
-msgstr ""
+msgstr "Abgelehnte Anfragen"
 
 #: templates/reset_requests.html:94
 msgid "No open reset requests."
-msgstr ""
+msgstr "Keine offenen Reset-Anfragen."
 
 #: templates/setup.html:2
 msgid "Admin Setup"
-msgstr ""
+msgstr "Administrator-Konfiguration"
 
 #: templates/setup.html:4
 msgid "Admin Account Setup"
-msgstr ""
+msgstr "Einrichtung des Administratorkontos"
 
 #: templates/setup.html:22
 msgid "Create Admin"
-msgstr ""
+msgstr "Administrator erstellen"
 
 #: templates/shop.html:5
 msgid "Deine Reward-Punkte:"
-msgstr ""
+msgstr "Deine Reward-Punkte:"
 
 #: templates/shop.html:19
 msgid "Bought"
-msgstr ""
+msgstr "Gekauft"
 
 #: templates/shop.html:24
 msgid "Buy"
-msgstr ""
+msgstr "Kaufen"
 
 #: templates/support.html:5
 msgid "If you have any questions or need assistance, please contact us at:"
-msgstr ""
+msgstr "Bei Fragen oder falls Sie Hilfe benötigen, kontaktieren Sie uns bitte unter:"
 
 #: templates/support.html:6
 msgid "Github:"
-msgstr ""
+msgstr "GitHub:"
 
 #: templates/support.html:11
 msgid "Wipe Server"
-msgstr ""
+msgstr "Server löschen"
 
 #: templates/support.html:17 templates/support.html:24
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: templates/support.html:18
 msgid "Describe your issue..."
-msgstr ""
+msgstr "Beschreiben Sie Ihr Problem..."
 
 #: templates/support.html:19
 msgid "Create Ticket"
-msgstr ""
+msgstr "Ticket erstellen"
 
 #: templates/support.html:36 templates/support_thread.html:7
 msgid "Open"
-msgstr ""
+msgstr "Offen"
 
 #: templates/support.html:38 templates/support_thread.html:9
 msgid "Closed"
-msgstr ""
+msgstr "Geschlossen"
 
 #: templates/support.html:43
 msgid "View"
-msgstr ""
+msgstr "Sicht"
 
 #: templates/support_thread.html:23
 msgid "Write a message..."
-msgstr ""
+msgstr "Nachricht schreiben..."
 
 #: templates/support_thread.html:24
 msgid "Send"
-msgstr ""
+msgstr "Schicken"
 
 #: templates/support_thread.html:27
 msgid "Close Ticket"
-msgstr ""
+msgstr "Ticket schließen"
 
 #: templates/support_thread.html:30
 msgid "This ticket is closed."
-msgstr ""
+msgstr "Dieses Ticket ist geschlossen."
 
 #: templates/support_thread.html:39
 msgid "Back to Support"
-msgstr ""
+msgstr "Zurück zur Hilfe"
 
 #: templates/users.html:4
 msgid "All Users"
-msgstr ""
+msgstr "Alle Benutzer"
 
 #: templates/users.html:33
 msgid "Request sent"
-msgstr ""
+msgstr "Anfrage gesendet"
 
 #: templates/users.html:35
 msgid "Request received"
-msgstr ""
+msgstr "Anfrage erhalten"
 
 #: templates/users.html:37
 msgid "Friend"
-msgstr ""
+msgstr "Freund"
 
 #: templates/users.html:40
 msgid "Add Friend"
-msgstr ""
+msgstr "Freund hinzufügen"
+
+#: routes/user.py:112
+msgid "Added Gravatar profile picture."
+msgstr "Gravatar-Profilbild hinzugefügt."
+
+#: templates/base.html:106
+msgid "You don’t have any notifications."
+msgstr "Sie haben keine Benachrichtigungen."
+
+#: templates/base.html:128
+msgid "You have "
+msgstr "Du hast "
+
+#: templates/base.html:128
+msgid " new notification/s"
+msgstr "neue Benachrichtigung(en)"
+
+#: templates/feed.html:37 templates/feed.html:40
+msgid "Error loading feed."
+msgstr "Fehler beim Laden des Feeds."
+
+#: templates/profile.html:12
+msgid "Use Gravatar"
+msgstr "Gravatar verwenden"
 
