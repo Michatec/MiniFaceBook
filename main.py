@@ -220,5 +220,6 @@ def not_found(error):
 if __name__ == '__main__':
     try:
         serve(app, host="0.0.0.0", port=80, threads=12)
+        print("Serving connections from port 80....")
     except:
         app.run(debug=True, host="0.0.0.0", port=80)
