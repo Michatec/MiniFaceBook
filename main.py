@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for, flash, abort, jsonify
+from flask import Flask, request, render_template, redirect, url_for, flash, abort, jsonify, current_app, session, has_request_context
 from flask_migrate import Migrate
 from flask_login import LoginManager, login_required, current_user
 from werkzeug.security import generate_password_hash
@@ -20,8 +20,14 @@ try:
     from routes.oauth import oauth
 except ImportError:
     pass
+from dotenv import load_dotenv
+import logging
 import re
-import os
+import os, sys
+
+logger = logging.getLogger('waitress')
+logger.setLevel(logging.INFO)
+logger.addHandler(logging.StreamHandler(sys.stdout))
 
 __mapper_args__ = {"confirm_deleted_rows": False}
 
@@ -66,40 +72,12 @@ app.register_blueprint(friends_bp)
 app.register_blueprint(noti_bp)
 app.register_blueprint(credits_bp)
 
-with app.app_context():
-    if db.session.query(ShopItem).count() == 0:
-        db.session.add(ShopItem(
-            name="Premium Account",
-            description="Exclusive features and content.",
-            price=100,
-            icon="bi-star"
-        ))
-        db.session.add(ShopItem(
-            name="Gold Profile Frame",
-            description="Adds a golden profile frame to your profile.",
-            price=50,
-            icon="bi-person-bounding-box"
-        ))
-        db.session.add(ShopItem(
-            name="Extra Upload Slot",
-            description="Become able to upload more files.",
-            price=130,
-            icon="bi-cloud-upload"
-        ))
-        db.session.add(ShopItem(
-            name="More Types",
-            description="More types for your posts. Limit: 500 types per post.",
-            price=80,
-            icon="bi-megaphone"
-        ))
-        db.session.commit()
-    else:
-        pass
-
 def get_locale():
-    lang = request.cookies.get('lang')
-    if lang in ['de', 'en']:
-        return lang
+    if has_request_context():
+        lang = request.cookies.get('lang')
+        if lang in ['de', 'en']:
+            return lang
+    return None
 
 babel.init_app(app, locale_selector=get_locale)
 
@@ -188,23 +166,48 @@ def setup():
 @app.route('/shop', methods=['GET', 'POST'])
 @login_required
 def shop():
-    items = db.session.query(ShopItem).all()
-    message = None
+    if 'shop_csrf_token' not in session:
+        session['shop_csrf_token'] = os.urandom(24).hex()
+    csrf_token_value = session['shop_csrf_token']
+    
+    items = db.session.query(ShopItem).order_by(ShopItem.price.asc()).all()
     owned_ids = [usi.item_id for usi in current_user.shop_items]
+    user_points = current_user.reward_points()
+    
     if request.method == 'POST':
-        item_id = int(request.form['item_id'])
+        if request.form.get('csrf_token') != session.get('shop_csrf_token'):
+            logger.warning(f"CSRF token mismatch for user {current_user.id} in shop")
+            abort(403)
+        
+        try:
+            item_id = int(request.form['item_id'])
+        except (ValueError, TypeError):
+            flash(_('Invalid item selected.'), 'danger')
+            return redirect(url_for('shop'))
+        
         item = db.session.get(ShopItem, item_id)
-        if item_id in owned_ids:
-            message = _("Already purchased!")
-        elif item and current_user.reward_points() >= item.price:
-            db.session.add(Reward(user_id=current_user.id, type=f'buy_{item.name}', points=-item.price))
-            db.session.add(UserShopItem(user_id=current_user.id, item_id=item.id))
-            db.session.commit()
-            message = _(f"Purchased: {item.name}")
-            owned_ids.append(item_id)
+        
+        if not item:
+            flash(_('Item not found.'), 'danger')
+        elif item_id in owned_ids:
+            flash(_('Already purchased!'), 'warning')
+        elif user_points < item.price:
+            flash(_('Not enough points! You need %(needed)d more.', needed=item.price - user_points), 'danger')
         else:
-            message = _("Not enough points!")
-    return render_template('shop.html', items=items, message=message, owned_ids=owned_ids)
+            try:
+                db.session.add(Reward(user_id=current_user.id, type=f'buy_{item.name}', points=-item.price))
+                db.session.add(UserShopItem(user_id=current_user.id, item_id=item.id))
+                db.session.commit()
+                session['shop_csrf_token'] = os.urandom(24).hex()
+                flash(_('Successfully purchased: %(item_name)s', item_name=item.name), 'success')
+                return redirect(url_for('shop'))
+            except Exception as e:
+                db.session.rollback()
+                logger.error(f"Shop purchase failed for user {current_user.id}: {e}")
+                flash(_('Purchase failed. Please try again.'), 'danger')
+    
+    return render_template('shop.html', items=items, owned_ids=owned_ids, 
+                           user_points=user_points, csrf_token_value=csrf_token_value)
 
 @app.errorhandler(403)
 def forbidden(error):
@@ -217,9 +220,85 @@ def not_found(error):
         return redirect(url_for('post.feed'))
     return render_template('index.html'), 200
 
+def print_error(message):
+    print(f"\033[91m[ERROR] {message}\033[0m")
+
+def print_loading(message):
+    colors = ["\033[91m", "\033[93m", "\033[92m", "\033[96m", "\033[94m", "\033[95m"]
+    color = colors[hash(message) % len(colors)]
+    print(f"{color}◆ {message}...\033[0m")
+
+
+def print_success(message):
+    colors = ["\033[92m", "\033[96m", "\033[94m", "\033[95m"]
+    color = colors[hash(message) % len(colors)]
+    print(f"{color}✓ {message}\033[0m")
+
+def print_rainbow_separator():
+    rainbow = "\033[91m▆\033[93m▆\033[92m▆\033[96m▆\033[94m▆\033[95m▆\033[0m"
+    print(f"  {rainbow * 12}")
+
 if __name__ == '__main__':
+    print_loading("Starting MiniFaceBook...")
+    print_rainbow_separator()
+    print_loading("Initializing database")
     try:
-        serve(app, host="0.0.0.0", port=80, threads=12)
-        print("Serving connections from port 80....")
+        with app.app_context():
+            if db.session.query(ShopItem).count() == 0:
+                shop_items = [
+                     {
+                          'name': _('Premium Account'),
+                          'description': _('Exclusive features and content.'),
+                          'price': 100,
+                          'icon': 'bi-star'
+                     },
+                     {
+                          'name': _('Gold Profile Frame'),
+                          'description': _('Adds a golden profile frame to your profile.'),
+                          'price': 50,
+                          'icon': 'bi-person-bounding-box'
+                     },
+                     {
+                          'name': _('Extra Upload Slot'),
+                          'description': _('Become able to upload more files.'),
+                          'price': 130,
+                          'icon': 'bi-cloud-upload'
+                     },
+                     {
+                          'name': _('More Types'),
+                          'description': _('More types for your posts. Limit: 500 types per post.'),
+                          'price': 80,
+                          'icon': 'bi-megaphone'
+                     }
+                ]
+                
+                for item_data in shop_items:
+                    item = ShopItem(**item_data)
+                    db.session.add(item)
+                db.session.commit()
+        print_success("Database initialized successfully.")
+    except Exception as e:
+        print_error(f"Database initialization failed: {e}")
+        print_error("Please check your database configuration and ensure the database is accessible.")
+        sys.exit(1)
+    
+    print_loading("Loading environment variables")
+    try:
+        load_dotenv()
+        port = os.environ.get('PORT')
+        print_success("Environment variables loaded successfully.")
+    except Exception as e:
+        print_error(f"Failed to load environment variables: {e}")
+        print_error("Please set the environment variables!")
+        sys.exit(1)
+        
+    print_loading(f"Using port {port}")
+    print_rainbow_separator()
+    print_loading("Starting server with Waitress")
+    
+    try:
+        print_success(f"Server started successfully with Waitress at the port {port}.")
+        serve(app, host="0.0.0.0", port=port, threads=12, connection_limit=1000)
     except:
-        app.run(debug=True, host="0.0.0.0", port=80)
+        print_error(f"Failed to start with Waitress, falling back to Flask's built-in server at port {port}. This is not recommended for production use.")
+        app.run(debug=True, host="0.0.0.0", port=port)

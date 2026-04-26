@@ -33,12 +33,21 @@ MiniFacebook is a minimalist social network built with [Flask](https://flask.pal
     pip install -r requirments.txt
     ```
 
-3. **Start**
+3. **Setup the .env file**
+
+    ```sh
+    mv .env_example .env
+    ```
+
+    And you can change this file, to your preferred Settings.
+    ⚠️ You need to set up a PORT
+
+4. **Start**
 
     ```sh
     python main.py
     ```
-4. **Optional:**
+5. **Optional:**
 
    Go to routes/example_oauth.py
    

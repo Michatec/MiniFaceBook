@@ -119,6 +119,8 @@ class UserShopItem(db.Model):
     item_id = db.Column(db.Integer, db.ForeignKey('shop_item.id'))
     bought_at = db.Column(db.DateTime, default=datetime.now)
     item = db.relationship('ShopItem')
+    
+    __table_args__ = (db.UniqueConstraint('user_id', 'item_id', name='unique_user_item_purchase'),)
 
 class SupportRequest(db.Model):
     id = db.Column(db.Integer, primary_key=True)

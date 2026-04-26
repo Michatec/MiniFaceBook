@@ -10,11 +10,10 @@ migrations
 *.env
 .vscode
 routes/__pycache__
-tools
 *.pot
 *.mo
 routes/oauth.py
 static/profile_pics
 static/uploads
-commands.txt
-py-to-exemfc.json
+venv/
+.env

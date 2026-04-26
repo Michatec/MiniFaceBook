@@ -1,33 +1,117 @@
 {% extends "base.html" %}
 {% block title %}{{ _('Shop') }}{% endblock %}
 {% block content %}
-<h2><i class="bi bi-shop me-2"></i>{{ _('Shop') }}</h2>
-<p>{{ _('Deine Reward-Punkte:') }} <b>{{ current_user.reward_points() }}</b></p>
-{% if message %}
-  <div class="alert alert-info">{{ message }}</div>
-{% endif %}
-<div class="row">
-  {% for item in items %}
-    <div class="col-md-4 mb-3">
-      <div class="card shadow-sm">
-        <div class="card-body text-center">
-          <i class="bi {{ item.icon }} display-4 mb-2"></i>
-          <h5>{{ item.name }}</h5>
-          <p>{{ item.description }}</p>
-          <p><b>{{ item.price }}</b> {{ _('Points') }}</p>
-          {% if item.id in owned_ids %}
-            <button class="btn btn-secondary" disabled>{{ _('Bought') }}</button>
-          {% else %}
-            <form method="post">
-              <input type="hidden" name="item_id" value="{{ item.id }}">
-              <button class="btn btn-success" {% if current_user.reward_points() < item.price %}disabled{% endif %}>
-                <i class="bi bi-cart"></i> {{ _('Buy') }}
-              </button>
-            </form>
-          {% endif %}
+<div class="container-fluid px-0">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="bi bi-shop me-2"></i>{{ _('Shop') }}</h2>
+        <div class="d-flex align-items-center gap-3">
+            <div class="points-display bg-gradient-primary text-white px-4 py-2 rounded-3 shadow-sm">
+                <i class="bi bi-coin me-2"></i>
+                <span>{{ _('Your Points:') }}</span>
+                <strong class="ms-1">{{ user_points }}</strong>
+            </div>
         </div>
-      </div>
     </div>
-  {% endfor %}
+
+    <div class="row g-4">
+        {% for item in items %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 shadow-sm border-0 {% if item.id in owned_ids %}owned-bg{% endif %}">
+                    <div class="card-body d-flex flex-column">
+                        <div class="text-center mb-3">
+                            <div class="icon-wrapper text-white rounded-circle mx-auto mb-2 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                                <i class="bi {{ item.icon }} display-4"></i>
+                            </div>
+                            <h5 class="card-title mb-1">{{ item.name }}</h5>
+                            <small class="text-muted">{{ item.description }}</small>
+                        </div>
+                        
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="price-tag">
+                                    <span class="h4 text-primary mb-0">{{ item.price }}</span>
+                                    <small class="text-muted">{{ _('Points') }}</small>
+                                </div>
+                                {% if item.id in owned_ids %}
+                                    <span class="badge bg-success rounded-pill px-3 py-2">
+                                        <i class="bi bi-check-lg me-1"></i>{{ _('Owned') }}
+                                    </span>
+                                {% endif %}
+                            </div>
+                            
+                            {% if item.id in owned_ids %}
+                                <button class="btn btn-outline-secondary w-100" disabled>
+                                    <i class="bi bi-bag-check me-2"></i>{{ _('Already Purchased') }}
+                                </button>
+                            {% else %}
+                                {% if user_points >= item.price %}
+                                    <form method="post" class="d-grid">
+                                        <input type="hidden" name="csrf_token" value="{{ csrf_token_value }}">
+                                        <input type="hidden" name="item_id" value="{{ item.id }}">
+                                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                                            <i class="bi bi-cart-plus me-2"></i>{{ _('Buy Now') }}
+                                        </button>
+                                    </form>
+                                {% else %}
+                                    <button class="btn btn-outline-secondary w-100" disabled title="{{ _('Not enough points') }}">
+                                        <i class="bi bi-coin me-2"></i>{{ _('Need %(needed)d more points', needed=item.price - user_points) }}
+                                    </button>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if not items %}
+        <div class="text-center py-5">
+            <i class="bi bi-inbox display-1 text-muted mb-3"></i>
+            <h4>{{ _('No items available') }}</h4>
+            <p class="text-muted">{{ _('Check back later for new items in the shop!') }}</p>
+        </div>
+    {% endif %}
 </div>
+
+<style>
+.points-display {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-weight: 600;
+}
+
+.icon-wrapper {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.icon-wrapper:hover {
+    transform: scale(1.05);
+}
+
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+}
+
+.owned-bg {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 2px solid #28a745 !important;
+}
+
+.badge {
+    font-size: 0.85rem;
+}
+
+.price-tag .h4 {
+    color: #0d6efd;
+    font-weight: 700;
+}
+</style>
 {% endblock %}
