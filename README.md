@@ -30,7 +30,7 @@ MiniFacebook is a minimalist social network built with [Flask](https://flask.pal
 2. **Install dependencies**
 
     ```sh
-    pip install -r requirments.txt
+    pip install -r requirements.txt
     ```
 
 3. **Setup the .env file**
